@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="Zhanbin" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Ubantu16.04下安装伪分布式Hadoop2.9.1｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Zhanbin
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/Tags/">Tags</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/categories/">categories</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="/2018/06/26/Ubantu16.04下安装伪分布式Hadoop2.9.1/header.png">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/2018/06/26/Ubantu16.04下安装伪分布式Hadoop2.9.1/header.png');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Ubantu16.04下安装伪分布式Hadoop2.9.1</h1>
+                    
+                    <span class="meta">
+                         作者 zhan-bin
+                        <span>
+                          日期 2018-06-26
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#hadoop"
+                           title="hadoop">hadoop</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Ubantu16.04下安装伪分布式Hadoop2.9.1
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="Ubantu16-04下安装伪分布式Hadoop2-9-1"><a href="#Ubantu16-04下安装伪分布式Hadoop2-9-1" class="headerlink" title="Ubantu16.04下安装伪分布式Hadoop2.9.1"></a>Ubantu16.04下安装伪分布式Hadoop2.9.1</h1><p>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a><br>日期：2018-6-26</p>
+<h2 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h2><h3 id="1-创建hadoop用户"><a href="#1-创建hadoop用户" class="headerlink" title="1.创建hadoop用户"></a>1.创建hadoop用户</h3><p>如果你安装Ubuntu的时候不是用的“hadoop”用户，那么需要增加一个名为hadoop的用户。（其实对用户名没有那么大严格的要求，但是感觉这样挺方便的）</p>
+<p>首先按ctrl+alt+t打开终端窗口，或者用xshell进行连接操作，输入如下命令创建新用户。<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo useradd -m hadoop -s /bin/bash</span><br></pre></td></tr></table></figure></p>
+<p>这条命令创建了可以登录的hadoop用户，并使用/bin/bash作为shell。</p>
+<pre><code>sudo命令
+本文中会大量使用到sudo命令。sudo是linux系统管理指令，是允许系统管理员让普通用户执行一些或者全部的root命令的一个工具，如halt，reboot，su等等。这样不仅减少了root用户的登录 和管理时        间，同样也提高了安全性。sudo不是对shell的一个代替，它是面向每个命令的。当使用sudo命令时，就    需要输入您当前使用用户的密码
+</code></pre><p>密码 在Linux的终端中输入密码，终端是不会显示你当前输入的密码，也不会提示你已经输入了多少字符密码。</p>
+<p>接着使用如下命令设置密码，可简单的设置为hadoop，按提示输入两次密码：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd hadoop</span><br></pre></td></tr></table></figure>
+<p>可为hadoop用户增加管理员权限，方便部署，避免一些对新手来说比较棘手的权限问题<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser hadoop sudo</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/1.png" alt="1"><br>最后使用su hadoop 切换到用户hadoop，或者注销当前用户，选择hadoop登录。</p>
+<h3 id="2-更新apt"><a href="#2-更新apt" class="headerlink" title="2.更新apt"></a>2.更新apt</h3><p>切换到hadoop用户后，先更新一些apt，后续会使用apt安装软件，如果没更新可能有一些软件安装不了。按ctrl+alt+t打开终端窗口或者使用xshell建立远程连接，执行如下命令：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/2.png" alt="2"></p>
+<p>后续需要更改一些配置文件，我比较喜欢用的是vim（vi增强版，基本用法相同），建议安装一下（如果你实在还不会用vi，请使用桌面版的ubuntu的gedit,这样可以使用文本编辑器进行修改，并且每次文件更改完成后请关闭整个gedit程序，否则会占用终端。)</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+<p>安装软件时需要确认，在提示处输入y即可。<br>还没用过Vim的可以参考下面的vim常用命令介绍<br><a href="https://www.cnblogs.com/doseoer/p/6241443.html" target="_blank" rel="noopener">常用的vim操作命令</a></p>
+<h3 id="3-安装SSH并配置SSH免密登陆"><a href="#3-安装SSH并配置SSH免密登陆" class="headerlink" title="3.安装SSH并配置SSH免密登陆"></a>3.安装SSH并配置SSH免密登陆</h3><p>集群，单节点模式都需要用到SSH登录（类似于远程登录，你可以登录某台Linux主机，并且在上面运行命令），Ubuntu默认已安装了SSH client，此外还需要安装SSH server:<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure></p>
+<p>安装后，可以使用命令登录本机：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh localhost</span><br></pre></td></tr></table></figure></p>
+<p>此时会有如下提示（SSH首次登陆提示），输入yes。然后按提示输入密码hadoop，这样就可以登录到本机。<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/3.png" alt="3"></p>
+<p><strong>现在我们设置不用SSH不用密码登陆。</strong></p>
+<ul>
+<li>1.先退出刚刚的SSH。回到原先的终端窗口，终端输入exit退出。<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如图所示：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/4.png" alt="4"></p>
+<ul>
+<li>2.然后切换路径并使用ssh-keygen生成密钥，并将密钥加入到授权中(如提示 bash: cd: adasd: No such file or directory 请执行一次ssh localhost</li>
+</ul>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh/</span><br></pre></td></tr></table></figure>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+<p>效果如下图：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/5.png" alt="5"></p>
+<ul>
+<li>3.最后执行 cat ./id_rsa.pub &gt;&gt; ./authorized_keys 加入授权(后面没有任何的提示)</li>
+</ul>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ./id_rsa.pub &gt;&gt; ./authorized_keys</span><br></pre></td></tr></table></figure>
+<p>效果：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/6.png" alt="6"></p>
+<p>再次输入ssh localhost 就无需输入密码了，如下图：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/7.png" alt="7"></p>
+<h3 id="4-配置JDK"><a href="#4-配置JDK" class="headerlink" title="4.配置JDK"></a>4.配置JDK</h3><p><strong>1.下载JDK</strong><br>这里我下载的JDK是Oracle的 <strong>jdk-8u171-linux-x64.tar.gz</strong> 这个版本的<br>下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">JDK下载地址-点击打开</a><br>这里我用的是64位系统，如果是32位的请下载x86的jdk</p>
+<p><strong>2.将JDK放置需要安装的路径下，并解压文件</strong><br>这里我将JDK安装到 /usr/local/java/ 中。</p>
+<ul>
+<li><p>先建立目录，执行命令：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /usr/local/java</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将刚刚下载的JDK复制到java安装路径中，执行命令：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/hadoop/Downloads</span><br><span class="line">sudo cp -r jdk-<span class="number">8</span>u171-linux-x64.tar.gz /usr/local/java/</span><br><span class="line"><span class="built_in">cd</span> /usr/local/java</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar xvzf jdk-<span class="number">8</span>u171-Linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>3.配置环境变量</strong></p>
+<ul>
+<li>先执行cd 切换到根目录下再执行 sudo vim /etc/profile ming ，然后将下面代码插入到文件的末尾 命令如下：<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span></span><br><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>将下面代码插入到文件末尾<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/usr/local/java/jdk1.8.0_171</span><br><span class="line">PATH=$PATH:$HOME/bin:$JAVA_HOME/bin</span><br><span class="line">export JAVA_HOME</span><br><span class="line">export PATH</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>执行update-alternatives</li>
+</ul>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/jdk1.<span class="number">8</span>.<span class="number">0</span>_171/bin/java" <span class="number">1</span></span><br><span class="line">sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/local/java/jdk1.<span class="number">8</span>.<span class="number">0</span>_171/bin/javac" <span class="number">1</span></span><br><span class="line">sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/local/java/jdk1.<span class="number">8</span>.<span class="number">0</span>_171/bin/javaws" <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --<span class="built_in">set</span> java /usr/local/java/jdk1.<span class="number">8</span>.<span class="number">0</span>_171/bin/java</span><br><span class="line">sudo update-alternatives --<span class="built_in">set</span> javac /usr/local/java/jdk1.<span class="number">8</span>.<span class="number">0</span>_171/bin/javac</span><br><span class="line">sudo update-alternatives --<span class="built_in">set</span> javaws /usr/local/java/jdk1.<span class="number">8</span>.<span class="number">0</span>_171/bin/javaws</span><br></pre></td></tr></table></figure>
+<p>重新加载下 /etc/profile<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>测试<br>执行如下命令测试是否安装成功<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/8.png" alt="8"></p>
+<h3 id="5-安装hadoop2-9-1"><a href="#5-安装hadoop2-9-1" class="headerlink" title="5.安装hadoop2.9.1"></a>5.安装hadoop2.9.1</h3><p>这里使用的是hadoop2.9.1 尽量下载stable文件夹里面的稳定版本。下载”stable”下的hadoop-2.x.y.tar.gz这个格式的文件<br>下载地址：<a href="http://mirrors.cnnic.cn/apache/hadoop/common/" target="_blank" rel="noopener">hadoop下载地址-点击打开</a><br>这里将hadoop安装在 /usr/local/ 中：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxf ~/Downloads/hadoop-<span class="number">2</span>.<span class="number">7</span>.<span class="number">3</span>.tar.gz -C /usr/local  #解压到/usr/local中</span><br><span class="line"><span class="built_in">cd</span> /usr/local/</span><br><span class="line">sudo mv ./hadoop-<span class="number">2</span>.<span class="number">7</span>.<span class="number">3</span>/ ./hadoop  #将文件夹名改为hadoop</span><br><span class="line">sudo chown -R hadoop ./hadoop     #修改文件权限</span><br></pre></td></tr></table></figure></p>
+<p>解压之后直接测试有没有装成功<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/hadoop</span><br><span class="line">./bin/hadoop version</span><br></pre></td></tr></table></figure></p>
+<h3 id="6-配置hadoop伪分布式"><a href="#6-配置hadoop伪分布式" class="headerlink" title="6.配置hadoop伪分布式"></a>6.配置hadoop伪分布式</h3><p>Hadoop伪分布式模式是在单机上模拟Hadoop分布式，单机上的分布式并不是真正的伪分布式，而是使用线程模拟分布式。Hadoop本身是无法区分伪分布式和分布式的，两种配置也很相似。唯一不同的地方是伪分布式是在单机器上配置，数据节点和名字节点均是一个机器。<br><strong>1.修改配置文件</strong><br>修改/usr/local/etc/hadoop中的core-site.xml和hdfs-site.xml文件</p>
+<ul>
+<li>修改core-site.xml,操作路径: /usr/local/hadoop<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ./etc/hadoop/core-site.xml</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>修改下面的内容：</p>
+<p><configuration><br></configuration><br>改为：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/9.png" alt="9"></p>
+<ul>
+<li><p>修改 hdfs-site.xml<br>修改下面的内容：<br><configuration><br></configuration><br>改为：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/10.png" alt="10"></p>
+</li>
+<li><p>namenode格式化及测试<br>执行如下命令进行namenode格式化：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs namenode -<span class="built_in">format</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>成功的话，会看到”successfully formatted”和”Exitting with status 0”的提示，若为”Exitting with status 1”则是处错。</p>
+<p>接着直接开启hadoop所有节点：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sbin/<span class="built_in">start</span>-dfs.sh          #<span class="built_in">start</span>-dfs.sh是个完整的执行文件，中间没有空格键</span><br></pre></td></tr></table></figure></p>
+<p>若出现SSH提示，输入yes即可。</p>
+<p>启动时若提示没有找到JAVA_HOME，则需要在hadoop文件下的/etc/hadoop/hadoop-env.sh下将JAVA_HOME重新写一下路径，我也遇到了这个问题。<br>解决JAVA_HOME问题参考：<a href="https://zhan-bin.github.io/2018/06/26/%E5%90%AF%E5%8A%A8hadoop%E6%89%BE%E4%B8%8D%E5%88%B0JAVA-HOME/" target="_blank" rel="noopener">hadoop启动找不到JAVA_HOME</a><br>启动时可能会出现如下WARN提示：WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform… using builtin-java classes where applicable<br>WARN提示可以忽略，并不会影响正常使用。</p>
+<p>启动完成后，可以通过命令jps来判断是否成功启动，若成功启动则会列出如下进程:<br>“NameNode”,”DataNode”,”SecondaryNameNode”（如果SecondaryNameNode没有启动，请运行sbin/stop-dfs.sh关闭进行，然后再次尝试启动尝试）。<br>如果没有NameNode或DataNode,那就是配置不成功，请仔细检查之前步骤，或通过查看启动日志排查原因。(这里有个eclipse是因为我这边开了eclipse，正常时会出现 Jps，SecondaryNameNode，NameNode，DataNode 这4个) 如果是Datanode或者Namenode其中一个启动不了很可能是这两个节点ID不一样。请参考：<a href="https://zhan-bin.github.io/2018/06/26/namenode%E6%88%96datanode%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8/" target="_blank" rel="noopener">hadoop namenode或Datanode无法启动解决办法</a><br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/11.png" alt="11"></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/06/26/启动hadoop找不到JAVA-HOME/" data-toggle="tooltip" data-placement="top"
+                           title="启动Hadoop时报错，提示：JAVA_HOME is not set JAVA_HOME未设置">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubantu16-04下安装伪分布式Hadoop2-9-1"><span class="toc-text">Ubantu16.04下安装伪分布式Hadoop2.9.1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置过程"><span class="toc-text">配置过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建hadoop用户"><span class="toc-text">1.创建hadoop用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-更新apt"><span class="toc-text">2.更新apt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-安装SSH并配置SSH免密登陆"><span class="toc-text">3.安装SSH并配置SSH免密登陆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-配置JDK"><span class="toc-text">4.配置JDK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-安装hadoop2-9-1"><span class="toc-text">5.安装hadoop2.9.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-配置hadoop伪分布式"><span class="toc-text">6.配置hadoop伪分布式</span></a></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://www.kofes.cn/">kofes</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Zhan-bin">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Zhan-bin">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Zhanbin 2018
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="touxiang.jpg">
+</body>
+
+</html>
