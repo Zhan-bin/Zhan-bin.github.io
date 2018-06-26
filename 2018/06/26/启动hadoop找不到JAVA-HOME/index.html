@@ -80,7 +80,7 @@
                         
 							
                         <li>
-                            <a href="/Tags/">Tags</a>
+                            <a href="/categories/">categories</a>
                         </li>
 							
 						
@@ -88,7 +88,7 @@
                         
 							
                         <li>
-                            <a href="/categories/">categories</a>
+                            <a href="/Tags/">Tags</a>
                         </li>
 							
 						
@@ -183,8 +183,8 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>#启动Hadoop时报错，提示：JAVA_HOME is not set JAVA_HOME未设置<br>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a><br>日期：2018-6-26</p>
-<p>###解决过程<br>这里我安装的是ubantu16.04和hadoop2.9.1<br>很多时候，配置完hadoop在启动hadoop的时候经常都会会出现找不到JAVA_HOME ，JAVA_HOME is not set ， 有可能是没安装jdk，jdk没安装成功或者是jdk安装成功了但无法识别出来。而大多数情况都是jdk安装成功了 但是hadoop无法找到JAVA_HOME 。<br>这里的解决办法是将hadoop配置文件里面的JAVA_HOME 从相对路径改为绝对路径。<br><strong>1.首先进入hadoop安装目录</strong></p>
+                <h1 id="启动Hadoop时报错，提示：JAVA-HOME-is-not-set-JAVA-HOME未设置"><a href="#启动Hadoop时报错，提示：JAVA-HOME-is-not-set-JAVA-HOME未设置" class="headerlink" title="启动Hadoop时报错，提示：JAVA_HOME is not set JAVA_HOME未设置"></a>启动Hadoop时报错，提示：JAVA_HOME is not set JAVA_HOME未设置</h1><p>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a><br>日期：2018-6-26</p>
+<h3 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h3><p>这里我安装的是ubantu16.04和hadoop2.9.1<br>很多时候，配置完hadoop在启动hadoop的时候经常都会会出现找不到JAVA_HOME ，JAVA_HOME is not set ， 有可能是没安装jdk，jdk没安装成功或者是jdk安装成功了但无法识别出来。而大多数情况都是jdk安装成功了 但是hadoop无法找到JAVA_HOME 。<br>这里的解决办法是将hadoop配置文件里面的JAVA_HOME 从相对路径改为绝对路径。<br><strong>1.首先进入hadoop安装目录</strong></p>
 <ul>
 <li><p>打开命令行 “ctrl+alt+T” 进入hadoop安装目录,这里我的安装目录是 /usr/local/hadoop</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/hadoop</span><br></pre></td></tr></table></figure>
@@ -220,7 +220,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#启动Hadoop时报错，提示：JAVA-HOME-is-not-set-JAVA-HOME未设置"><span class="toc-text">启动Hadoop时报错，提示：JAVA_HOME is not set JAVA_HOME未设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决过程"><span class="toc-text">解决过程</span></a></li></ol></li></ol></li></ol>
                 </div>
             </div>
         </div>
