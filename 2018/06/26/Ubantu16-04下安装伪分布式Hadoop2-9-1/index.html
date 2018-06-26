@@ -135,13 +135,13 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="/2018/06/26/Ubantu16.04下安装伪分布式Hadoop2.9.1/header.png">
+<img class="wechat-title-img" src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/header.png">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('/2018/06/26/Ubantu16.04下安装伪分布式Hadoop2.9.1/header.png');
+        background-image: url('/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/header.png');
     }
 
     
@@ -193,33 +193,33 @@
 <p>接着使用如下命令设置密码，可简单的设置为hadoop，按提示输入两次密码：</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd hadoop</span><br></pre></td></tr></table></figure>
 <p>可为hadoop用户增加管理员权限，方便部署，避免一些对新手来说比较棘手的权限问题<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser hadoop sudo</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/1.png" alt="1"><br>最后使用su hadoop 切换到用户hadoop，或者注销当前用户，选择hadoop登录。</p>
+<p><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/1.png" alt="1"><br>最后使用su hadoop 切换到用户hadoop，或者注销当前用户，选择hadoop登录。</p>
 <h3 id="2-更新apt"><a href="#2-更新apt" class="headerlink" title="2.更新apt"></a>2.更新apt</h3><p>切换到hadoop用户后，先更新一些apt，后续会使用apt安装软件，如果没更新可能有一些软件安装不了。按ctrl+alt+t打开终端窗口或者使用xshell建立远程连接，执行如下命令：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/2.png" alt="2"></p>
+<p><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/2.png" alt="2"></p>
 <p>后续需要更改一些配置文件，我比较喜欢用的是vim（vi增强版，基本用法相同），建议安装一下（如果你实在还不会用vi，请使用桌面版的ubuntu的gedit,这样可以使用文本编辑器进行修改，并且每次文件更改完成后请关闭整个gedit程序，否则会占用终端。)</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
 <p>安装软件时需要确认，在提示处输入y即可。<br>还没用过Vim的可以参考下面的vim常用命令介绍<br><a href="https://www.cnblogs.com/doseoer/p/6241443.html" target="_blank" rel="noopener">常用的vim操作命令</a></p>
 <h3 id="3-安装SSH并配置SSH免密登陆"><a href="#3-安装SSH并配置SSH免密登陆" class="headerlink" title="3.安装SSH并配置SSH免密登陆"></a>3.安装SSH并配置SSH免密登陆</h3><p>集群，单节点模式都需要用到SSH登录（类似于远程登录，你可以登录某台Linux主机，并且在上面运行命令），Ubuntu默认已安装了SSH client，此外还需要安装SSH server:<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure></p>
 <p>安装后，可以使用命令登录本机：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh localhost</span><br></pre></td></tr></table></figure></p>
-<p>此时会有如下提示（SSH首次登陆提示），输入yes。然后按提示输入密码hadoop，这样就可以登录到本机。<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/3.png" alt="3"></p>
+<p>此时会有如下提示（SSH首次登陆提示），输入yes。然后按提示输入密码hadoop，这样就可以登录到本机。<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/3.png" alt="3"></p>
 <p><strong>现在我们设置不用SSH不用密码登陆。</strong></p>
 <ul>
 <li>1.先退出刚刚的SSH。回到原先的终端窗口，终端输入exit退出。<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>如图所示：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/4.png" alt="4"></p>
+<p>如图所示：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/4.png" alt="4"></p>
 <ul>
 <li>2.然后切换路径并使用ssh-keygen生成密钥，并将密钥加入到授权中(如提示 bash: cd: adasd: No such file or directory 请执行一次ssh localhost</li>
 </ul>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh/</span><br></pre></td></tr></table></figure>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
-<p>效果如下图：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/5.png" alt="5"></p>
+<p>效果如下图：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/5.png" alt="5"></p>
 <ul>
 <li>3.最后执行 cat ./id_rsa.pub &gt;&gt; ./authorized_keys 加入授权(后面没有任何的提示)</li>
 </ul>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ./id_rsa.pub &gt;&gt; ./authorized_keys</span><br></pre></td></tr></table></figure>
-<p>效果：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/6.png" alt="6"></p>
-<p>再次输入ssh localhost 就无需输入密码了，如下图：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/7.png" alt="7"></p>
+<p>效果：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/6.png" alt="6"></p>
+<p>再次输入ssh localhost 就无需输入密码了，如下图：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/7.png" alt="7"></p>
 <h3 id="4-配置JDK"><a href="#4-配置JDK" class="headerlink" title="4.配置JDK"></a>4.配置JDK</h3><p><strong>1.下载JDK</strong><br>这里我下载的JDK是Oracle的 <strong>jdk-8u171-linux-x64.tar.gz</strong> 这个版本的<br>下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">JDK下载地址-点击打开</a><br>这里我用的是64位系统，如果是32位的请下载x86的jdk</p>
 <p><strong>2.将JDK放置需要安装的路径下，并解压文件</strong><br>这里我将JDK安装到 /usr/local/java/ 中。</p>
 <ul>
@@ -249,7 +249,7 @@
 <li>测试<br>执行如下命令测试是否安装成功<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/8.png" alt="8"></p>
+<p><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/8.png" alt="8"></p>
 <h3 id="5-安装hadoop2-9-1"><a href="#5-安装hadoop2-9-1" class="headerlink" title="5.安装hadoop2.9.1"></a>5.安装hadoop2.9.1</h3><p>这里使用的是hadoop2.9.1 尽量下载stable文件夹里面的稳定版本。下载”stable”下的hadoop-2.x.y.tar.gz这个格式的文件<br>下载地址：<a href="http://mirrors.cnnic.cn/apache/hadoop/common/" target="_blank" rel="noopener">hadoop下载地址-点击打开</a><br>这里将hadoop安装在 /usr/local/ 中：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxf ~/Downloads/hadoop-<span class="number">2</span>.<span class="number">7</span>.<span class="number">3</span>.tar.gz -C /usr/local  #解压到/usr/local中</span><br><span class="line"><span class="built_in">cd</span> /usr/local/</span><br><span class="line">sudo mv ./hadoop-<span class="number">2</span>.<span class="number">7</span>.<span class="number">3</span>/ ./hadoop  #将文件夹名改为hadoop</span><br><span class="line">sudo chown -R hadoop ./hadoop     #修改文件权限</span><br></pre></td></tr></table></figure></p>
 <p>解压之后直接测试有没有装成功<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/hadoop</span><br><span class="line">./bin/hadoop version</span><br></pre></td></tr></table></figure></p>
 <h3 id="6-配置hadoop伪分布式"><a href="#6-配置hadoop伪分布式" class="headerlink" title="6.配置hadoop伪分布式"></a>6.配置hadoop伪分布式</h3><p>Hadoop伪分布式模式是在单机上模拟Hadoop分布式，单机上的分布式并不是真正的伪分布式，而是使用线程模拟分布式。Hadoop本身是无法区分伪分布式和分布式的，两种配置也很相似。唯一不同的地方是伪分布式是在单机器上配置，数据节点和名字节点均是一个机器。<br><strong>1.修改配置文件</strong><br>修改/usr/local/etc/hadoop中的core-site.xml和hdfs-site.xml文件</p>
@@ -258,9 +258,9 @@
 </li>
 </ul>
 <p>修改下面的内容：</p>
-<p><configuration><br></configuration><br>改为：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/9.png" alt="9"></p>
+<p><configuration><br></configuration><br>改为：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/9.png" alt="9"></p>
 <ul>
-<li><p>修改 hdfs-site.xml<br>修改下面的内容：<br><configuration><br></configuration><br>改为：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/Ubantu16.04下安装伪分布式Hadoop2.9.1/10.png" alt="10"></p>
+<li><p>修改 hdfs-site.xml<br>修改下面的内容：<br><configuration><br></configuration><br>改为：<br><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/10.png" alt="10"></p>
 </li>
 <li><p>namenode格式化及测试<br>执行如下命令进行namenode格式化：</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs namenode -<span class="built_in">format</span></span><br></pre></td></tr></table></figure>
