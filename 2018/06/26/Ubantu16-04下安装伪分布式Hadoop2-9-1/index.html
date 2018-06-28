@@ -257,9 +257,9 @@
 </li>
 </ul>
 <p>解压之后直接测试有没有装成功<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/hadoop</span><br><span class="line">./bin/hadoop version</span><br></pre></td></tr></table></figure></p>
-<h3 id="6-配置hadoop伪分布式"><a href="#6-配置hadoop伪分布式" class="headerlink" title="6.配置hadoop伪分布式"></a>6.配置hadoop伪分布式</h3><p>Hadoop伪分布式模式是在单机上模拟Hadoop分布式，单机上的分布式并不是真正的伪分布式，而是使用线程模拟分布式。Hadoop本身是无法区分伪分布式和分布式的，两种配置也很相似。唯一不同的地方是伪分布式是在单机器上配置，数据节点和名字节点均是一个机器。<br><strong>1.修改配置文件</strong><br>修改/usr/local/etc/hadoop中的core-site.xml和hdfs-site.xml文件</p>
+<h3 id="6-配置hadoop伪分布式"><a href="#6-配置hadoop伪分布式" class="headerlink" title="6.配置hadoop伪分布式"></a>6.配置hadoop伪分布式</h3><p>Hadoop伪分布式模式是在单机上模拟Hadoop分布式，单机上的分布式并不是真正的伪分布式，而是使用线程模拟分布式。Hadoop本身是无法区分伪分布式和分布式的，两种配置也很相似。唯一不同的地方是伪分布式是在单机器上配置，数据节点和名字节点均是一个机器。<br><strong>1.修改配置文件</strong><br>修改/usr/local/hadoop/etc/hadoop中的core-site.xml和hdfs-site.xml文件</p>
 <ul>
-<li>修改core-site.xml,操作路径: /usr/local/hadoop<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ./etc/hadoop/core-site.xml</span><br></pre></td></tr></table></figure>
+<li>修改core-site.xml,操作路径: /usr/local/hadoop<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/hadoop #先进入到hadoop安装目录</span><br><span class="line">vi ./etc/hadoop/core-site.xml #打开配置文件</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>修改下面的内容：</p>
