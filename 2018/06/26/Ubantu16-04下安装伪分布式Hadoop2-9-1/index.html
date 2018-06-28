@@ -230,7 +230,7 @@
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/hadoop/Downloads</span><br><span class="line">sudo cp -r jdk-<span class="number">8</span>u171-linux-x64.tar.gz /usr/local/java/</span><br><span class="line"><span class="built_in">cd</span> /usr/local/java</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>解压：</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar xvzf jdk-<span class="number">8</span>u171-Linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar xvzf jdk-<span class="number">8</span>u171-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><strong>3.配置环境变量</strong></p>
@@ -250,7 +250,12 @@
 </li>
 </ul>
 <p><img src="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/8.png" alt="8"></p>
-<h3 id="5-安装hadoop2-9-1"><a href="#5-安装hadoop2-9-1" class="headerlink" title="5.安装hadoop2.9.1"></a>5.安装hadoop2.9.1</h3><p>这里使用的是hadoop2.9.1 尽量下载stable文件夹里面的稳定版本。下载”stable”下的hadoop-2.x.y.tar.gz这个格式的文件<br>下载地址：<a href="http://mirrors.cnnic.cn/apache/hadoop/common/" target="_blank" rel="noopener">hadoop下载地址-点击打开</a><br>这里将hadoop安装在 /usr/local/ 中：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxf ~/Downloads/hadoop-<span class="number">2</span>.<span class="number">7</span>.<span class="number">3</span>.tar.gz -C /usr/local  #解压到/usr/local中</span><br><span class="line"><span class="built_in">cd</span> /usr/local/</span><br><span class="line">sudo mv ./hadoop-<span class="number">2</span>.<span class="number">7</span>.<span class="number">3</span>/ ./hadoop  #将文件夹名改为hadoop</span><br><span class="line">sudo chown -R hadoop ./hadoop     #修改文件权限</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-安装hadoop2-9-1"><a href="#5-安装hadoop2-9-1" class="headerlink" title="5.安装hadoop2.9.1"></a>5.安装hadoop2.9.1</h3><ul>
+<li>这里使用的是hadoop2.9.1 尽量下载stable文件夹里面的稳定版本。下载”stable”下的hadoop-2.x.y.tar.gz这个格式的文件</li>
+<li>下载地址：<a href="http://mirrors.cnnic.cn/apache/hadoop/common/" target="_blank" rel="noopener">hadoop下载地址-点击打开</a></li>
+<li>这里将hadoop安装在 /usr/local/ 中：<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxf ~/Downloads/hadoop-<span class="number">2</span>.<span class="number">9</span>.<span class="number">1</span>.tar.gz -C /usr/local  #解压到/usr/local中</span><br><span class="line"><span class="built_in">cd</span> /usr/local/</span><br><span class="line">sudo mv ./hadoop-<span class="number">2</span>.<span class="number">9</span>.<span class="number">1</span>/ ./hadoop  #将文件夹名改为hadoop</span><br><span class="line">sudo chown -R hadoop ./hadoop     #修改文件权限</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>解压之后直接测试有没有装成功<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/hadoop</span><br><span class="line">./bin/hadoop version</span><br></pre></td></tr></table></figure></p>
 <h3 id="6-配置hadoop伪分布式"><a href="#6-配置hadoop伪分布式" class="headerlink" title="6.配置hadoop伪分布式"></a>6.配置hadoop伪分布式</h3><p>Hadoop伪分布式模式是在单机上模拟Hadoop分布式，单机上的分布式并不是真正的伪分布式，而是使用线程模拟分布式。Hadoop本身是无法区分伪分布式和分布式的，两种配置也很相似。唯一不同的地方是伪分布式是在单机器上配置，数据节点和名字节点均是一个机器。<br><strong>1.修改配置文件</strong><br>修改/usr/local/etc/hadoop中的core-site.xml和hdfs-site.xml文件</p>
 <ul>
@@ -276,6 +281,11 @@
                 
 
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/06/28/hadoop全分布安装/" data-toggle="tooltip" data-placement="top"
+                           title="hadoop全分布安装">&larr; Previous Post</a>
+                    </li>
                     
                     
                     <li class="next">
