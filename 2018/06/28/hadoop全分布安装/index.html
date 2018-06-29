@@ -439,6 +439,12 @@
 <li>在cmaster主机启动名称节点，在其他节点启动datanode。效果如下图：</li>
 </ul>
 <p><img src="/2018/06/28/hadoop全分布安装/21.png" alt="21"></p>
+<ul>
+<li>启动之后我们还可以在主节点（namenoded）查看所有主节点和主节点控制下的节点的状态</li>
+<li>命令：<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -report | <span class="built_in">more</span>  #节点状态详细信息</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2018/06/28/hadoop全分布安装/22.png" alt="22"></p>
 
                 <hr>
                 
