@@ -283,16 +283,20 @@
 <li><p>（1）打开系统文件(添加如下图框框内的内容)：</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在末尾加上hadoop安装路径</p>
+<li><p>（1）在末尾加上hadoop安装路径</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_INSTALL=/usr/local/hadoop</span><br><span class="line">export HADOOP_HOME=/usr/local/hadoop</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在PATH的后面加上下面内容：</p>
+<li><p>（2）在PATH的后面加上下面内容：</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:$HADOOP_HOME/bin:$HADOOP_HOME/sbin</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><img src="/2018/06/28/hadoop全分布安装/18.png" alt="18"></p>
 <ul>
-<li>输入“hdfs -version”测试下有没有安装成功<br><img src="/2018/06/28/hadoop全分布安装/19.png" alt="19"></li>
+<li><p>（3）重新加载下profile</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>（4）输入“hdfs -version”测试下有没有安装成功<br><img src="/2018/06/28/hadoop全分布安装/19.png" alt="19"></p>
+</li>
 </ul>
 <h2 id="6-安装ssh免密登陆"><a href="#6-安装ssh免密登陆" class="headerlink" title="6. 安装ssh免密登陆"></a>6. 安装ssh免密登陆</h2><h3 id="6-1设置名称节点（cmaster）"><a href="#6-1设置名称节点（cmaster）" class="headerlink" title="6.1设置名称节点（cmaster）"></a>6.1设置名称节点（cmaster）</h3><ul>
 <li><p>（1）生成密钥对，执行如下命令：</p>
