@@ -349,7 +349,7 @@
 <h2 id="6-安装ssh免密登陆"><a href="#6-安装ssh免密登陆" class="headerlink" title="6. 安装ssh免密登陆"></a>6. 安装ssh免密登陆</h2><h3 id="6-1设置名称节点（cmaster）"><a href="#6-1设置名称节点（cmaster）" class="headerlink" title="6.1设置名称节点（cmaster）"></a>6.1设置名称节点（cmaster）</h3><ul>
 <li>（1）生成密钥对，执行如下命令：</li>
 </ul>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh/</span><br><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
 <ul>
 <li>然后有提示就按【Enter】键，就会依照默许的选项将生成的秘钥对保存在.ssh/id_rsa文件中。</li>
 </ul>
@@ -370,7 +370,7 @@
 <h3 id="6-2-设置两台cslave的ssh配置"><a href="#6-2-设置两台cslave的ssh配置" class="headerlink" title="6.2 设置两台cslave的ssh配置"></a>6.2 设置两台cslave的ssh配置</h3><ul>
 <li>（1）把公钥复制所有cslave机器上</li>
 </ul>
-<p>//scp ~/.ssh/id_rsa.pub 远程用户名@远程服务器ip:~/</p>
+<p>scp ~/.ssh/id_rsa.pub 远程用户名@远程服务器ip:~/</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#scp ~/.ssh/id_rsa.pub root@<span class="number">192</span>.<span class="number">168</span>.<span class="number">88</span>.<span class="number">133</span>:~/</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>(2)在数据节点cslaver主机里面输入命令：</p>
