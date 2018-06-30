@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        分类阅读｜undefined
+        hdfs文件操作｜undefined
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/分类阅读/">
+    <link rel="canonical" href="http://yoursite.com/2018/06/30/hdfs文件操作/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -123,182 +123,149 @@
 </script>
 
 <!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="/2018/06/30/hdfs文件操作/header.png">
+
+
 <style>
-    .intro-header .site-heading {
-        margin: 50px;
-    }
     
     header.intro-header {
-        background-image: url('post-default.jpg')
+        background-image: url('/2018/06/30/hdfs文件操作/header.png');
     }
+
     
 </style>
 
-<!-- Page Header -->
 <header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading text-center">
-                    <h1>分类阅读</h1>
-                    <span class="subheading"></span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>hdfs文件操作</h1>
+                    
+                    <span class="meta">
+                         作者 zhan-bin
+                        <span>
+                          日期 2018-06-30
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#hadoop"
+                           title="hadoop">hadoop</a>
+                        
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            hdfs文件操作
+        </span>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 标签云 -->
-            <div id='tag_cloud' class="tags">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="hdfs文件操作"><a href="#hdfs文件操作" class="headerlink" title="hdfs文件操作"></a>hdfs文件操作</h1><p>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a><br>日期：2018-6-26</p>
+<h2 id="Hadoop网页版文件管理"><a href="#Hadoop网页版文件管理" class="headerlink" title="Hadoop网页版文件管理"></a>Hadoop网页版文件管理</h2><p>输入命令查看端口：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ntlp</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/06/30/hdfs文件操作/4.png" alt="4"></p>
+<ul>
+<li>这里看到是50070端口进入网页版管理界面。</li>
+<li><p>在自己虚拟机或者宿主机浏览器（如果虚拟机没有可视化界面的话使用宿主机打开）输入网址：主节点（namenode）的IP地址：刚刚查看到的端口，我这里主节点的IP是10.21.21.3 ， 端口是50070 , 所以我的网址那一栏输入</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">http://10.21.21.3:50070</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>出现下面界面，可以看到文件列表<br><img src="/2018/06/30/hdfs文件操作/5.png" alt="5"></p>
+<h2 id="1-列出hadoop指定目录下的文件"><a href="#1-列出hadoop指定目录下的文件" class="headerlink" title="1.列出hadoop指定目录下的文件"></a>1.列出hadoop指定目录下的文件</h2><p><img src="/2018/06/30/hdfs文件操作/1.png" alt="1"><br>示例（查看hadoop根目录下的文件列表）：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop <span class="built_in">fs</span> -ls /</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2018/06/30/hdfs文件操作/3.png" alt="2"></p>
+<h2 id="2-新建文件夹"><a href="#2-新建文件夹" class="headerlink" title="2.新建文件夹"></a>2.新建文件夹</h2><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop dfs -<span class="built_in">mkdir</span> /input #创建一个名为input的文件夹</span><br></pre></td></tr></table></figure>
+<h2 id="3-上传本地文件"><a href="#3-上传本地文件" class="headerlink" title="3.上传本地文件"></a>3.上传本地文件</h2><p><img src="/2018/06/30/hdfs文件操作/2.png" alt="2"></p>
+<ul>
+<li>现在我将<strong>/usr/local/winupload</strong>文件夹下面的hadoop压缩文件上传到hadoop文件系统中，先切换到winupload下，再执行上传<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/winupload</span><br><span class="line">hadoop <span class="built_in">fs</span> -put ./jdk-<span class="number">8</span>u171-linux-x64.tar.gz /</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2018/06/30/hdfs文件操作/8.png" alt="8"></p>
+<ul>
+<li><p>然后在网页中可以看到这个文件。<br><img src="/2018/06/30/hdfs文件操作/4.png" alt="4"></p>
+</li>
+<li><p>然后点击文件名那里可以看到文件分成了几块且每一块分别放到哪个数据节点里面<br><img src="/2018/06/30/hdfs文件操作/6.png" alt="6"></p>
+<h3 id="4-删除文件"><a href="#4-删除文件" class="headerlink" title="4.删除文件"></a>4.删除文件</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop <span class="built_in">fs</span> -rm -r /output #删除output文件夹</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+                <hr>
                 
-                <a href="#hadoop" title="hadoop" rel="6">hadoop</a>
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/06/28/xshell上传文件到虚拟机/" data-toggle="tooltip" data-placement="top"
+                           title="xshell上传文件到虚拟机">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
                 
-                <a href="#test1" title="test1" rel="1">test1</a>
+
                 
-                <a href="#信息安全" title="信息安全" rel="2">信息安全</a>
-                
-                <a href="#Data Mining" title="Data Mining" rel="1">Data Mining</a>
+
+
+                <!--加入新的评论系统-->
                 
             </div>
 
-            <!-- 标签列表 -->
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="hadoop">
-                    <span class="tag-text">hadoop</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/">
-                        <h2 class="post-title">
-                            Ubantu16.04下安装伪分布式Hadoop2.9.1
-                        </h2>
-                        
-                    </a>
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hdfs文件操作"><span class="toc-text">hdfs文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop网页版文件管理"><span class="toc-text">Hadoop网页版文件管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-列出hadoop指定目录下的文件"><span class="toc-text">1.列出hadoop指定目录下的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-新建文件夹"><span class="toc-text">2.新建文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-上传本地文件"><span class="toc-text">3.上传本地文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-删除文件"><span class="toc-text">4.删除文件</span></a></li></ol></li></ol></li></ol>
                 </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/30/hdfs文件操作/">
-                        <h2 class="post-title">
-                            hdfs文件操作
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/28/hadoop全分布安装/">
-                        <h2 class="post-title">
-                            hadoop全分布安装
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/26/namenode或datanode无法启动/">
-                        <h2 class="post-title">
-                            hadoop伪分布下 namenode或datanode无法启动解决
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/28/xshell上传文件到虚拟机/">
-                        <h2 class="post-title">
-                            xshell上传文件到虚拟机
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/26/启动hadoop找不到JAVA-HOME/">
-                        <h2 class="post-title">
-                            启动Hadoop时报错，提示：JAVA_HOME is not set JAVA_HOME未设置
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
             </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="test1">
-                    <span class="tag-text">test1</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/21/hello-world/">
-                        <h2 class="post-title">
-                            hello-world
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="信息安全">
-                    <span class="tag-text">信息安全</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/22/利用随机数加密文件/">
-                        <h2 class="post-title">
-                            利用随机数加密文件
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/22/图片与Base64转换/">
-                        <h2 class="post-title">
-                            图片与Base64转换
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Data Mining">
-                    <span class="tag-text">Data Mining</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/22/网页爬虫/">
-                        <h2 class="post-title">
-                            网页爬虫
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://www.kofes.cn/">kofes</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
