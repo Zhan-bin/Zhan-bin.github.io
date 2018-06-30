@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="Zhanbin" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        yarn配置｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2018/06/30/yarn配置/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Zhanbin
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/分类阅读/">分类阅读</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="/2018/06/30/yarn配置/header.png">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/2018/06/30/yarn配置/header.png');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>yarn配置</h1>
+                    
+                    <span class="meta">
+                         作者 zhan-bin
+                        <span>
+                          日期 2018-06-30
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#hadoop"
+                           title="hadoop">hadoop</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            yarn配置
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="yarn配置"><a href="#yarn配置" class="headerlink" title="yarn配置"></a>yarn配置</h1><p>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a></p>
+<p>日期：2018-6-30</p>
+<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><ul>
+<li>我这里的环境是<br>系统：CentOS 7 minimal<br>hadoop版本：hadoop2.9.1</li>
+</ul>
+<h2 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h2><h4 id="1-配置计算调度系统Yarn和计算引擎Map-Reduce"><a href="#1-配置计算调度系统Yarn和计算引擎Map-Reduce" class="headerlink" title="1.配置计算调度系统Yarn和计算引擎Map/Reduce"></a>1.配置计算调度系统Yarn和计算引擎Map/Reduce</h4><h4 id="2-namenode上配置mapred-site-xml-刚开始只有mapred-site-xml-template文件，将其重命名为mapred-site-xml即可"><a href="#2-namenode上配置mapred-site-xml-刚开始只有mapred-site-xml-template文件，将其重命名为mapred-site-xml即可" class="headerlink" title="2.namenode上配置mapred-site.xml (刚开始只有mapred-site.xml.template文件，将其重命名为mapred-site.xml即可)"></a>2.namenode上配置mapred-site.xml (刚开始只有mapred-site.xml.template文件，将其重命名为mapred-site.xml即可)</h4><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/hadoop #进入hadoop安装目录</span><br><span class="line"><span class="built_in">cd</span> /etc/hadoop #进入配置文件目录</span><br><span class="line">mv mapred-site.xml.template mapred-site.xml</span><br><span class="line">vi mapred-site.xml</span><br></pre></td></tr></table></figure>
+<p>在文件最后添加如下内容：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-yarn-site-xml的配置"><a href="#3-yarn-site-xml的配置" class="headerlink" title="3.yarn-site.xml的配置"></a>3.yarn-site.xml的配置</h4><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;master&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"> </span><br><span class="line">&lt;property&gt;  </span><br><span class="line">    &lt;name&gt;yarn.nodemanager.<span class="built_in">aux</span>-services&lt;/name&gt;  </span><br><span class="line">    &lt;value&gt;mapreduce_shuffle&lt;/value&gt;  </span><br><span class="line">&lt;/property&gt;  </span><br><span class="line"> </span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.nodemanager.auxservices.mapreduce.shuffle.class&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;org.apache.hadoop.mapred.ShuffleHandler&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="4-启动yarn集群start-yarn-sh"><a href="#4-启动yarn集群start-yarn-sh" class="headerlink" title="4.启动yarn集群start-yarn.sh"></a>4.启动yarn集群start-yarn.sh</h4><h4 id="5-jps观察启动结果"><a href="#5-jps观察启动结果" class="headerlink" title="5.jps观察启动结果"></a>5.jps观察启动结果</h4><h4 id="6-可以使用yarn-daemon-sh单独启动resourcemanager和nodemanager"><a href="#6-可以使用yarn-daemon-sh单独启动resourcemanager和nodemanager" class="headerlink" title="6.可以使用yarn-daemon.sh单独启动resourcemanager和nodemanager"></a>6.可以使用yarn-daemon.sh单独启动resourcemanager和nodemanager</h4><h4 id="7-通过网页-http-master-8088-观察yarn集群"><a href="#7-通过网页-http-master-8088-观察yarn集群" class="headerlink" title="7.通过网页 http://master:8088/ 观察yarn集群"></a>7.通过网页 <a href="http://master:8088/" target="_blank" rel="noopener">http://master:8088/</a> 观察yarn集群</h4><h4 id="8-find-usr-local-hadoop-name-example-jar-查找示例文件"><a href="#8-find-usr-local-hadoop-name-example-jar-查找示例文件" class="headerlink" title="8.find /usr/local/hadoop -name example.jar 查找示例文件"></a>8.find /usr/local/hadoop -name <em>example</em>.jar 查找示例文件</h4><h4 id="9-通过hadoop-jar-xxx-jar-wordcount-input-output来运行示例程序"><a href="#9-通过hadoop-jar-xxx-jar-wordcount-input-output来运行示例程序" class="headerlink" title="9.通过hadoop jar xxx.jar wordcount /input /output来运行示例程序"></a>9.通过hadoop jar xxx.jar wordcount /input /output来运行示例程序</h4><h4 id="10-通过网页来观察该job的运行情况"><a href="#10-通过网页来观察该job的运行情况" class="headerlink" title="10.通过网页来观察该job的运行情况"></a>10.通过网页来观察该job的运行情况</h4><h4 id="11-hadoop-job-kill-job-id-–-gt-mapred-job-kill-job-id-mapred-job-list"><a href="#11-hadoop-job-kill-job-id-–-gt-mapred-job-kill-job-id-mapred-job-list" class="headerlink" title="11.hadoop job -kill job_id –&gt; mapred job -kill job_id mapred job -list"></a>11.hadoop job -kill job_id –&gt; mapred job -kill job_id mapred job -list</h4><h4 id="12-经验：yarn-site如果是集中启动，其实只需要在管理机上配置一份即可，但是如果单独启动，需要每台机器一份，在网页上可以看到当前机器的配置，以及这个配置的来源"><a href="#12-经验：yarn-site如果是集中启动，其实只需要在管理机上配置一份即可，但是如果单独启动，需要每台机器一份，在网页上可以看到当前机器的配置，以及这个配置的来源" class="headerlink" title="12.经验：yarn-site如果是集中启动，其实只需要在管理机上配置一份即可，但是如果单独启动，需要每台机器一份，在网页上可以看到当前机器的配置，以及这个配置的来源"></a>12.经验：yarn-site如果是集中启动，其实只需要在管理机上配置一份即可，但是如果单独启动，需要每台机器一份，在网页上可以看到当前机器的配置，以及这个配置的来源</h4>
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/06/30/hdfs文件操作/" data-toggle="tooltip" data-placement="top"
+                           title="hdfs文件操作">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#yarn配置"><span class="toc-text">yarn配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置环境"><span class="toc-text">配置环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置过程"><span class="toc-text">配置过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-配置计算调度系统Yarn和计算引擎Map-Reduce"><span class="toc-text">1.配置计算调度系统Yarn和计算引擎Map/Reduce</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-namenode上配置mapred-site-xml-刚开始只有mapred-site-xml-template文件，将其重命名为mapred-site-xml即可"><span class="toc-text">2.namenode上配置mapred-site.xml (刚开始只有mapred-site.xml.template文件，将其重命名为mapred-site.xml即可)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-yarn-site-xml的配置"><span class="toc-text">3.yarn-site.xml的配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-启动yarn集群start-yarn-sh"><span class="toc-text">4.启动yarn集群start-yarn.sh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-jps观察启动结果"><span class="toc-text">5.jps观察启动结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-可以使用yarn-daemon-sh单独启动resourcemanager和nodemanager"><span class="toc-text">6.可以使用yarn-daemon.sh单独启动resourcemanager和nodemanager</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-通过网页-http-master-8088-观察yarn集群"><span class="toc-text">7.通过网页 http://master:8088/ 观察yarn集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-find-usr-local-hadoop-name-example-jar-查找示例文件"><span class="toc-text">8.find /usr/local/hadoop -name example.jar 查找示例文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-通过hadoop-jar-xxx-jar-wordcount-input-output来运行示例程序"><span class="toc-text">9.通过hadoop jar xxx.jar wordcount /input /output来运行示例程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-通过网页来观察该job的运行情况"><span class="toc-text">10.通过网页来观察该job的运行情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-hadoop-job-kill-job-id-–-gt-mapred-job-kill-job-id-mapred-job-list"><span class="toc-text">11.hadoop job -kill job_id –&gt; mapred job -kill job_id mapred job -list</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-经验：yarn-site如果是集中启动，其实只需要在管理机上配置一份即可，但是如果单独启动，需要每台机器一份，在网页上可以看到当前机器的配置，以及这个配置的来源"><span class="toc-text">12.经验：yarn-site如果是集中启动，其实只需要在管理机上配置一份即可，但是如果单独启动，需要每台机器一份，在网页上可以看到当前机器的配置，以及这个配置的来源</span></a></li></ol></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://www.kofes.cn/">kofes</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/2913880653">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Zhan-bin">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Zhanbin 2018
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="touxiang.jpg">
+</body>
+
+</html>
