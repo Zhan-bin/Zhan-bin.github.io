@@ -375,11 +375,9 @@
 <ul>
 <li><p>(2)在数据节点cslaver主机里面输入命令：</p>
 </li>
-<li><p>将公钥复制给authorized_keys</p>
+<li><p>将公钥复制给authorized_keys<br>（要在根目录下执行，因为刚刚公钥是复制到根目录下面的。）</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> #进入到根目录</span><br><span class="line">cp id_rsa.pub ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cp id_rsa.pub ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
-<ul>
 <li><p>(3)测试是否可行</p>
 </li>
 <li><p>在cmaster主机上输入命令（ssh 后面是cslaver的IP地址或者设置了映射的直接输入cslaver1或者cslaver2）：</p>
