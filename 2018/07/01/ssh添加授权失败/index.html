@@ -202,7 +202,10 @@
 </li>
 </ul>
 <p><img src="/2018/07/01/ssh添加授权失败/1.png" alt="1"><br>如果没有就重新加入（进入到id_rsa.pub所在目录操作以下命令）：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp id_rsa.pub ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
-<p>如果还不行就手动将<strong>id_rsa.pub</strong>的内容追加到<strong>authorized_keys</strong>中。</p>
+<ul>
+<li>如果还不行就手动将<strong>id_rsa.pub</strong>的内容追加到<strong>authorized_keys</strong>中。</li>
+<li>如果有主机公钥的话就检查与主机上的<strong>id_rsa.pub</strong>里的公钥内容一不一样，不一样的话就将被访问机器的那个主机的公钥删掉按上述办法重新加入。</li>
+</ul>
 
                 <hr>
                 
