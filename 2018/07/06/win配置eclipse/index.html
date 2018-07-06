@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        分类阅读｜undefined
+        win配置eclipse｜undefined
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/分类阅读/">
+    <link rel="canonical" href="http://yoursite.com/2018/07/06/win配置eclipse/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -123,242 +123,149 @@
 </script>
 
 <!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="/2018/07/06/win配置eclipse/header.png">
+
+
 <style>
-    .intro-header .site-heading {
-        margin: 50px;
-    }
     
     header.intro-header {
-        background-image: url('post-default.jpg')
+        background-image: url('/2018/07/06/win配置eclipse/header.png');
     }
+
     
 </style>
 
-<!-- Page Header -->
 <header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading text-center">
-                    <h1>分类阅读</h1>
-                    <span class="subheading"></span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>win配置eclipse</h1>
+                    
+                    <span class="meta">
+                         作者 zhan-bin
+                        <span>
+                          日期 2018-07-06
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#hadoop"
+                           title="hadoop">hadoop</a>
+                        
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            win配置eclipse
+        </span>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 标签云 -->
-            <div id='tag_cloud' class="tags">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="win10下-eclipse配置hadoop开发环境"><a href="#win10下-eclipse配置hadoop开发环境" class="headerlink" title="win10下 eclipse配置hadoop开发环境"></a>win10下 eclipse配置hadoop开发环境</h1><p>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a><br>日期：2018-07-06</p>
+<h2 id="本文配置环境"><a href="#本文配置环境" class="headerlink" title="本文配置环境"></a>本文配置环境</h2><blockquote>
+<p>win10<br>hadoop2.9.1</p>
+</blockquote>
+<h2 id="用到的工具机器下载链接"><a href="#用到的工具机器下载链接" class="headerlink" title="用到的工具机器下载链接"></a>用到的工具机器下载链接</h2><ul>
+<li><a href="https://pan.baidu.com/s/1LrtWhk_q--QP-gCDpjxKLw" target="_blank" rel="noopener">hadoop2x-eclipse-plugin-master.zip</a></li>
+<li><a href="https://pan.baidu.com/s/1wI50NmI98r2Yf4uP3Zg2uw" target="_blank" rel="noopener">winutils-master.zip</a></li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="windows上安装hadoop"><a href="#windows上安装hadoop" class="headerlink" title="windows上安装hadoop"></a>windows上安装hadoop</h3><p>1.将自己的linux虚拟机上的一样的hadoop安装包解压到windows的安装目录<br>2.在windows上配置hadoop环境变量</p>
+<h2 id="配置eclipse"><a href="#配置eclipse" class="headerlink" title="配置eclipse"></a>配置eclipse</h2><ul>
+<li>把 <strong>winutils-master.zip</strong> 里面自己对应版本的文件夹里面的bin所有文件拷贝进hadoop安装目录的bin文件夹，选择全部覆盖。</li>
+<li>将刚刚bin目录里面的<strong>hadoop.dll</strong>拷贝到 <strong>C:\Windows\System32</strong> （弄完最好重启下电脑）</li>
+<li><p>把<strong>hadoop-eclipse-plugin-x.x.x.jar</strong>包(这里我用的是刚刚<strong>hadoop2x-eclipse-plugin-master.zip</strong>文件解压后release文件夹里的2.6.0版本的)复制到Eclipse目录下的pluguns目录中。重启Eclipse。打开Window-&gt;Open Perspective-&gt;Map/Reduce。可以看到多出了<strong>Hadoop Map/Reduce</strong>项。把它选中点击ok新建一个map/reduce的视图。<br><img src="/2018/07/06/win配置eclipse/1.png" alt="1"></p>
+</li>
+<li><p>下面的控制台多出了Map/Reduce Locations视图。右键Map/Reduce Locations试图的空白处，选择新建，定义Hadoop集群的链接。Location name任起，Host填写Hadoop的mater的IP地址，port是对应的端口号，这个要与集群上core-site.xml文件中的参数一致，确保能连到集群，User name任起。<br><img src="/2018/07/06/win配置eclipse/2.png" alt="2"></p>
+</li>
+</ul>
+<p><img src="/2018/07/06/win配置eclipse/3.png" alt="3"></p>
+<ul>
+<li><p>填写好以上参数后点击Finish。DFS Locations下出现定义的Hadoop连接信息。点开节点会看到集群上的文件信息。看不到则连接失败，检查上步IP地址及端口的配置是否有误。<br><img src="/2018/07/06/win配置eclipse/4.png" alt="4"></p>
+</li>
+<li><p>若有文件的话，点击其中的某节点中的文件确定能查看文件内容。<br><img src="/2018/07/06/win配置eclipse/5.png" alt="5"></p>
+</li>
+<li><p>此时若不能查看文件内容，若提示是editor could not be initialized. org.eclipse.ui.workbench.texteditor类似的问题，则可能是C:\Windows\System32下的hadoop.dll版本和hadoop-2.7.5/bin下的hadoop.dll版本不一致的原因。</p>
+</li>
+<li><p>至此，window下Eclipse配置Hadoop开发环境搭建完毕。</p>
+</li>
+</ul>
+
+                <hr>
                 
-                <a href="#hadoop" title="hadoop" rel="12">hadoop</a>
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/07/06/eclipsc运行mapreduce报错/" data-toggle="tooltip" data-placement="top"
+                           title=" eclipsc运行mapreduce报错">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
                 
-                <a href="#test1" title="test1" rel="1">test1</a>
+
                 
-                <a href="#信息安全" title="信息安全" rel="2">信息安全</a>
-                
-                <a href="#Data Mining" title="Data Mining" rel="1">Data Mining</a>
+
+
+                <!--加入新的评论系统-->
                 
             </div>
 
-            <!-- 标签列表 -->
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="hadoop">
-                    <span class="tag-text">hadoop</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/26/Ubantu16-04下安装伪分布式Hadoop2-9-1/">
-                        <h2 class="post-title">
-                            Ubantu16.04下安装伪分布式Hadoop2.9.1
-                        </h2>
-                        
-                    </a>
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#win10下-eclipse配置hadoop开发环境"><span class="toc-text">win10下 eclipse配置hadoop开发环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#本文配置环境"><span class="toc-text">本文配置环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用到的工具机器下载链接"><span class="toc-text">用到的工具机器下载链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows上安装hadoop"><span class="toc-text">windows上安装hadoop</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置eclipse"><span class="toc-text">配置eclipse</span></a></li></ol></li></ol>
                 </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/07/06/eclipsc运行mapreduce报错/">
-                        <h2 class="post-title">
-                             eclipsc运行mapreduce报错
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/28/hadoop全分布安装/">
-                        <h2 class="post-title">
-                            hadoop全分布安装
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/30/hdfs文件操作/">
-                        <h2 class="post-title">
-                            hdfs文件操作
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/07/03/java实现hdfs文件操作/">
-                        <h2 class="post-title">
-                            java实现hdfs文件操作
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/07/01/ssh添加授权失败/">
-                        <h2 class="post-title">
-                            ssh添加授权失败
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/26/namenode或datanode无法启动/">
-                        <h2 class="post-title">
-                            hadoop伪分布下 namenode或datanode无法启动解决
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/07/06/win配置eclipse/">
-                        <h2 class="post-title">
-                            win配置eclipse
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/30/yarn配置/">
-                        <h2 class="post-title">
-                            yarn配置
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/28/xshell上传文件到虚拟机/">
-                        <h2 class="post-title">
-                            xshell上传文件到虚拟机
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/26/启动hadoop找不到JAVA-HOME/">
-                        <h2 class="post-title">
-                            启动Hadoop时报错，提示：JAVA_HOME is not set JAVA_HOME未设置
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/07/03/第一个hdfs程序/">
-                        <h2 class="post-title">
-                            第一个hdfs程序
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
             </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="test1">
-                    <span class="tag-text">test1</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/21/hello-world/">
-                        <h2 class="post-title">
-                            hello-world
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="信息安全">
-                    <span class="tag-text">信息安全</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/22/利用随机数加密文件/">
-                        <h2 class="post-title">
-                            利用随机数加密文件
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/22/图片与Base64转换/">
-                        <h2 class="post-title">
-                            图片与Base64转换
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Data Mining">
-                    <span class="tag-text">Data Mining</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/06/22/网页爬虫/">
-                        <h2 class="post-title">
-                            网页爬虫
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://www.kofes.cn/">kofes</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
