@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="Zhanbin" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Windows上第一个mapreduce程序｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2018/07/07/Windows上第一个mapreduce程序/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Zhanbin
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/分类阅读/">分类阅读</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="/2018/07/07/Windows上第一个mapreduce程序/header.png">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/2018/07/07/Windows上第一个mapreduce程序/header.png');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Windows上第一个mapreduce程序</h1>
+                    
+                    <span class="meta">
+                         作者 zhan-bin
+                        <span>
+                          日期 2018-07-07
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#hadoop"
+                           title="hadoop">hadoop</a>
+                        
+                        <a class="tag" href="/tags/#Map Reduce"
+                           title="Map Reduce">Map Reduce</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Windows上第一个mapreduce程序
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="Windows上第一个mapreduce程序"><a href="#Windows上第一个mapreduce程序" class="headerlink" title="Windows上第一个mapreduce程序"></a>Windows上第一个mapreduce程序</h1><p>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a><br>日期：2018-07-07</p>
+<h2 id="MapReduce原理及其执行过程"><a href="#MapReduce原理及其执行过程" class="headerlink" title="MapReduce原理及其执行过程"></a>MapReduce原理及其执行过程</h2><ul>
+<li>这里实在windows上开发执行mapreduce程序，如果要放到hdfs集群，将地址改成集群地址即可。</li>
+<li>Map Reduce原理参考参考链接：<a href="https://blog.csdn.net/loveyaqin1990/article/details/54948451" target="_blank" rel="noopener">MapReduce原理及其执行过程</a></li>
+</ul>
+<h2 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h2><ul>
+<li>项目右键打开build path</li>
+</ul>
+<p><img src="/2018/07/07/Windows上第一个mapreduce程序/1.png" alt=""></p>
+<ul>
+<li>添加一个名为hadoop的Library图片里面我这里时已经添加好了的。<br><img src="/2018/07/07/Windows上第一个mapreduce程序/2.png" alt=""></li>
+</ul>
+<p><img src="/2018/07/07/Windows上第一个mapreduce程序/3.png" alt=""></p>
+<p><img src="/2018/07/07/Windows上第一个mapreduce程序/4.png" alt=""></p>
+<ul>
+<li><p>新建完然后就添加jar包到自己的新建目录下面<br><img src="/2018/07/07/Windows上第一个mapreduce程序/5.png" alt=""></p>
+</li>
+<li><p>进入Hadoop安装目录后找到share文件夹进入hadoop文件夹</p>
+</li>
+<li>common文件夹里面需要导入的包： hadoop-common-2.9.1.jar和lib里面的所有包</li>
+<li>hdfs文件夹里面需要导入的包：hadoop-hdfs-2.9.1.jar，hadoop-hdfs-client-2.9.1.jar</li>
+<li><p>mapreduce文件夹里面需要导入的包：下图选中的和lib里面的所有包<br><img src="/2018/07/07/Windows上第一个mapreduce程序/6.png" alt=""></p>
+</li>
+<li><p>yarn文件夹里面需要导入的包：下图选中的和lib里面的所有包<br><img src="/2018/07/07/Windows上第一个mapreduce程序/7.png" alt=""></p>
+</li>
+</ul>
+<blockquote>
+<p>这样一来我们就不用每次都要到文件夹导包了，直接选中刚刚新建的hadoop就可以了。</p>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
+<li>WordMapper.java</li>
+</ul>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">package com.zhanbin;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import org.apache.hadoop.io.IntWritable;</span><br><span class="line">import org.apache.hadoop.io.LongWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line">import org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">public class WordMapper extends Mapper&lt;LongWritable,Text, Text, IntWritable&gt; &#123;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    protected void map(LongWritable key, Text value, Mapper&lt;LongWritable, Text, Text, IntWritable&gt;.Context context)</span><br><span class="line">            throws IOException, InterruptedException &#123;</span><br><span class="line">        String line = value.toString();</span><br><span class="line">        String[] words = line.split(" ");</span><br><span class="line">        <span class="keyword">for</span>(String word : words) &#123;</span><br><span class="line">            context.write(new Text(word), new IntWritable(<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>WordReducer.java</li>
+</ul>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package com.zhanbin;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import org.apache.hadoop.io.IntWritable;</span><br><span class="line">import org.apache.hadoop.io.LongWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line">import org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line"> </span><br><span class="line">public class WordReducer extends Reducer&lt;Text, IntWritable, Text, LongWritable&gt; &#123;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    protected void reduce(Text key, Iterable&lt;IntWritable&gt; values,</span><br><span class="line">            Reducer&lt;Text, IntWritable, Text, LongWritable&gt;.Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">        long count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(IntWritable v : values) &#123;</span><br><span class="line">            count += v.get();</span><br><span class="line">        &#125;</span><br><span class="line">        context.write(key, new LongWritable(count));</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>Test.java</li>
+</ul>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">package com.zhanbin;</span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.<span class="built_in">fs</span>.<span class="built_in">Path</span>;</span><br><span class="line">import org.apache.hadoop.io.IntWritable;</span><br><span class="line">import org.apache.hadoop.io.LongWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line">import org.apache.hadoop.mapreduce.Job;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">public class Test &#123; </span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        Configuration conf = new Configuration();</span><br><span class="line">                         </span><br><span class="line">        Job job = Job.getInstance(conf);</span><br><span class="line">         </span><br><span class="line">        job.setMapperClass(WordMapper.class);</span><br><span class="line">        job.setReducerClass(WordReducer.class);</span><br><span class="line">        job.setMapOutputKeyClass(Text.class);</span><br><span class="line">        job.setMapOutputValueClass(IntWritable.class);</span><br><span class="line">        job.setOutputKeyClass(Text.class);</span><br><span class="line">        job.setOutputValueClass(LongWritable.class);</span><br><span class="line">         </span><br><span class="line">        FileInputFormat.setInputPaths(job, "d:/test.txt");</span><br><span class="line">        FileOutputFormat.setOutputPath(job, new <span class="built_in">Path</span>("d:/out/"));</span><br><span class="line">         </span><br><span class="line">        job.waitForCompletion(true);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行Test.java测试,这里是将我电脑本地的test.txt作为输入，将词频结果输出到本地电脑的目录。</li>
+</ul>
+<blockquote>
+<p>执行时可能会出现“org.apache .hadoop.io.nativeio.NativeIO$Windows.access0 (Ljava/lang/String;I)Z” 的错误。<br>出现这个错误可以参考：<a href="https://zhan-bin.github.io/2018/07/06/eclipsc%E8%BF%90%E8%A1%8Cmapreduce%E6%8A%A5%E9%94%99/" target="_blank" rel="noopener">运行Map Reduce出错</a></p>
+</blockquote>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/07/06/win配置eclipse/" data-toggle="tooltip" data-placement="top"
+                           title="win配置eclipse">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows上第一个mapreduce程序"><span class="toc-text">Windows上第一个mapreduce程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MapReduce原理及其执行过程"><span class="toc-text">MapReduce原理及其执行过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导包"><span class="toc-text">导包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://www.kofes.cn/">kofes</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/2913880653">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Zhan-bin">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Zhanbin 2018
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="touxiang.jpg">
+</body>
+
+</html>
