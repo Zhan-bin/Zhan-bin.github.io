@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        一种基于哈希的字符串匹配｜undefined
+        HDFS读写流程、文件权限、安全模式｜undefined
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2018/07/07/一种基于哈希的字符串匹配/">
+    <link rel="canonical" href="http://yoursite.com/2018/07/17/HDFS读写流程、文件权限、安全模式/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -127,13 +127,13 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="/2018/07/07/一种基于哈希的字符串匹配/header.png">
+<img class="wechat-title-img" src="/2018/07/17/HDFS读写流程、文件权限、安全模式/header.png">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('/2018/07/07/一种基于哈希的字符串匹配/header.png');
+        background-image: url('/2018/07/17/HDFS读写流程、文件权限、安全模式/header.png');
     }
 
     
@@ -144,18 +144,18 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>一种基于哈希的字符串匹配</h1>
+                    <h1>HDFS读写流程、文件权限、安全模式</h1>
                     
                     <span class="meta">
                          作者 zhan-bin
                         <span>
-                          日期 2018-07-07
+                          日期 2018-07-17
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#论文综述"
-                           title="论文综述">论文综述</a>
+                        <a class="tag" href="/tags/#hadoop"
+                           title="hadoop">hadoop</a>
                         
                     </div>
                 </div>
@@ -164,7 +164,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            一种基于哈希的字符串匹配
+            HDFS读写流程、文件权限、安全模式
         </span>
     </div>
 </header>
@@ -175,27 +175,21 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h1 id="一种基于哈希的字符串匹配（论文综述）"><a href="#一种基于哈希的字符串匹配（论文综述）" class="headerlink" title="一种基于哈希的字符串匹配（论文综述）"></a>一种基于哈希的字符串匹配（论文综述）</h1><p>论文来源：<strong>IEEE TRANSACTIONS ON KNOWLEDGE AND DATA ENGINEERING, VOL. 30, NO. 1, JANUARY 2018</strong><br>论文原文：<a href="https://pan.baidu.com/s/1nfhEhUnokVg7JeKDxS34_g" target="_blank" rel="noopener">String Similarity Search: A Hash-Based Approach</a><br>密码：5bp0</p>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>&emsp;字符串相似性搜索是一种基本查询，它已经杯广泛应用于数据库，数据仓库和数据挖掘所需的DNA测序，自动完成容错查询和数据清理。在本文中，研究了基于编辑距离的字符串相似性搜索，这是由许多数据管理系统支持的，大多数现有的工作都采用过滤和验证方法。<br>&emsp;这里提出了两种基于哈希标签的字符串匹配技术。这两种标签称为OX和XX标签，通过对比哈希标签来判定两个字符串是否相似，这个算法实现了高效率，并且使索引大小和索引构建时间比实验中现有的方法同时缩短了一个数量级。</p>
-<p><strong>Index Terms</strong>—Similarity search, hash, edit distance</p>
-<h2 id="1-编辑距离"><a href="#1-编辑距离" class="headerlink" title="1.编辑距离"></a>1.编辑距离</h2><h3 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h3><p>&emsp;编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。</p>
-<h3 id="1-2-编辑距离计算"><a href="#1-2-编辑距离计算" class="headerlink" title="1.2 编辑距离计算"></a>1.2 编辑距离计算</h3><p>&emsp;下图展示了两个字符串之间的编辑距离计算过程，编辑距离是取最小的那个，下面看到两组的字符串都是相同的但是使用的操作不一样，计算出来的编辑距离不一样。编辑距离是不停地用插入、删除、替换操作将两个字符串变成一样，遍历完所有可能的操作之后取最小的一个编辑距离。<br><img src="/2018/07/07/一种基于哈希的字符串匹配/1.png" alt=""></p>
-<h3 id="1-3-计算机计算编辑距离"><a href="#1-3-计算机计算编辑距离" class="headerlink" title="1.3 计算机计算编辑距离"></a>1.3 计算机计算编辑距离</h3><p>&emsp;上面说到我们尝试所有的将两个字符串变成相同夫人操作，取最小的编辑距离。而计算机是使用矩阵来计算编辑距离。<br>&emsp;计算机计算编辑距离的常用方法是填充两个字符串的距离矩阵，右下角的最后一个元素的值就是这两个字符串的编辑距离。</p>
-<ul>
-<li><p>开始我们初始化一个矩阵，假设有两个字符串S_1和S_2长度分别为m和n，先构建一个 n+1 * m+1 初始矩阵。这里比较“ivan1”和“ivan2”两个字符串。<br><img src="/2018/07/07/一种基于哈希的字符串匹配/2.png" alt=""></p>
-</li>
-<li><p>扫描两字符串（n*m级的），如果：str1 [i]== str2[j]，用temp记录它，为0。否则temp记为1。</p>
-</li>
-<li><p>然后在矩阵d[i,j]赋于d[i-1,j]+1 、d[i,j-1]+1、d[i-1,j-1]+temp三者的最小值。<br><img src="/2018/07/07/一种基于哈希的字符串匹配/3.png" alt=""></p>
-</li>
-<li><p>最后填充完距离矩阵之后矩阵的最后一个元素的值即是这两个字符串的编辑距离。<br><img src="/2018/07/07/一种基于哈希的字符串匹配/4.png" alt=""></p>
-</li>
+                <h1 id="HDFS读写流程、文件权限、安全模式"><a href="#HDFS读写流程、文件权限、安全模式" class="headerlink" title="HDFS读写流程、文件权限、安全模式"></a>HDFS读写流程、文件权限、安全模式</h1><h2 id="1-HDFS读写流程"><a href="#1-HDFS读写流程" class="headerlink" title="1.HDFS读写流程"></a>1.HDFS读写流程</h2><h3 id="（1）HDFS读取文件"><a href="#（1）HDFS读取文件" class="headerlink" title="（1）HDFS读取文件"></a>（1）HDFS读取文件</h3><ul>
+<li>首先通过分布式文件系统向namenode取得所需0文件分块及其所在位置</li>
+<li>再通过FSDataInputStream向指定datanode取得文件分块，然后合并文件，最后关闭数据流。<br><img src="/2018/07/17/HDFS读写流程、文件权限、安全模式/1.png" alt="1"></li>
 </ul>
-<h2 id="2-基于哈希标签的字符串匹配方法"><a href="#2-基于哈希标签的字符串匹配方法" class="headerlink" title="2. 基于哈希标签的字符串匹配方法"></a>2. 基于哈希标签的字符串匹配方法</h2><h3 id="2-1-概述"><a href="#2-1-概述" class="headerlink" title="2.1 概述"></a>2.1 概述</h3><p>&emsp;基于哈希标签的字符串匹配方法是这篇文章主要介绍的一种新技术，传统的基于编辑距离的字符串相似性搜索需要填充距离矩阵在字符串比较长的时候会大大增加计算开销，对此这篇文章提出了一种基于散列的匹配方法。这个方法通过对单个字符赋初始值，然后计算q-gram字符串序列的哈希值，再根据字符串当中序列的出现与否给哈希标签赋值。<br>&emsp;我们设定哈希标签长度L=20，s = “effcionsy” 、t =“efficiency” ，τ=2，q=2, 则Qs = {$e, ef, ff, fc, ci, io, on, ns, sy, y$} Qt = {$e, ef, ff, fi, ic, ci, ie, en, nc, cy y$}。</p>
-<p>&emsp;这里有两种哈希标签XX和XO，假如ef的哈希值为14（假设没有哈希冲突），ef出现了一次，则哈希标签对应第14位则标为1，以此类推，直到遍历完q-gram字符序列。<br>哈希标签初始化（共20位）：<br>XX：00000000000000000000<br>XO：00000000000000000000</p>
-<h3 id="2-2用到的函数"><a href="#2-2用到的函数" class="headerlink" title="2.2用到的函数"></a>2.2用到的函数</h3><p><img src="/2018/07/07/一种基于哈希的字符串匹配/5.png" alt=""></p>
-<h3 id="2-3计算字符串q-gram子串哈希值"><a href="#2-3计算字符串q-gram子串哈希值" class="headerlink" title="2.3计算字符串q-gram子串哈希值"></a>2.3计算字符串q-gram子串哈希值</h3><p><img src="/2018/07/07/一种基于哈希的字符串匹配/6.png" alt=""></p>
-<h3 id="2-4-哈希标签的计算"><a href="#2-4-哈希标签的计算" class="headerlink" title="2.4 哈希标签的计算"></a>2.4 哈希标签的计算</h3><p>&emsp;哈希标签的计算过程：假如出现了“ff”字串，而ff的哈希值是14，则对哈希标签的第14位的值进行更新操作，旧的标签值和1进行“异或”（XX）或者“或”（OX）操作。如下图，下图的H[i]表示哈希标签的第i位。<br><img src="/2018/07/07/一种基于哈希的字符串匹配/7.png" alt=""><br>&emsp;计算出哈希标签之后计算标签里面的1的个数，然后与给定的阈值t作比较，如果大于阈值则两个字符串不被考虑为相似。</p>
+<h3 id="（2）HDFS写入文件"><a href="#（2）HDFS写入文件" class="headerlink" title="（2）HDFS写入文件"></a>（2）HDFS写入文件</h3><ul>
+<li>首先通过DistributeFileSystem向namenode发送写入文件请求。</li>
+<li>namenode进行分块并分配相应datanode存储节点给客户端，客户端根据namenode返回的结果到相应节点进行存储。<br><img src="/2018/07/17/HDFS读写流程、文件权限、安全模式/2.png" alt="2"></li>
+</ul>
+<h2 id="2-HDFS文件权限"><a href="#2-HDFS文件权限" class="headerlink" title="2.HDFS文件权限"></a>2.HDFS文件权限</h2><ul>
+<li>与 Linux文件权限类似<br>r：read，w：write，x：execute，权限 x 对于文件忽略表示是否允许访问其内容</li>
+<li>如果 Linux系统用户zhangsan使用 hadoop命令创建一个文件，那么这个文件在 HDFS 中 owner 就是 zhangsan。</li>
+<li>HDFS的权限目的：阻止好人错错事，而不是阻止止坏人做坏事。 HDFS相信，你告诉我你是谁，我就认为你是谁。 </li>
+</ul>
+<h2 id="3-HDFS安全模式"><a href="#3-HDFS安全模式" class="headerlink" title="3.HDFS安全模式"></a>3.HDFS安全模式</h2><p><img src="/2018/07/17/HDFS读写流程、文件权限、安全模式/3.png" alt="3"></p>
+<h2 id="4-HDFS-namenode和secondarynamenode文件合并过程"><a href="#4-HDFS-namenode和secondarynamenode文件合并过程" class="headerlink" title="4.HDFS namenode和secondarynamenode文件合并过程"></a>4.HDFS namenode和secondarynamenode文件合并过程</h2><p><img src="/2018/07/17/HDFS读写流程、文件权限、安全模式/4.png" alt="4"></p>
 
                 <hr>
                 
@@ -203,14 +197,14 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2018/07/17/HDFS读写流程、文件权限、安全模式/" data-toggle="tooltip" data-placement="top"
-                           title="HDFS读写流程、文件权限、安全模式">&larr; Previous Post</a>
+                        <a href="/2018/07/17/mapreduce原理及其执行过程/" data-toggle="tooltip" data-placement="top"
+                           title="mapreduce原理及其执行过程">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2018/07/07/Windows上第一个mapreduce程序/" data-toggle="tooltip" data-placement="top"
-                           title="Windows上第一个mapreduce程序">Next Post &rarr;</a>
+                        <a href="/2018/07/07/一种基于哈希的字符串匹配/" data-toggle="tooltip" data-placement="top"
+                           title="一种基于哈希的字符串匹配">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -226,7 +220,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一种基于哈希的字符串匹配（论文综述）"><span class="toc-text">一种基于哈希的字符串匹配（论文综述）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-编辑距离"><span class="toc-text">1.编辑距离</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-概述"><span class="toc-text">1.1 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-编辑距离计算"><span class="toc-text">1.2 编辑距离计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-计算机计算编辑距离"><span class="toc-text">1.3 计算机计算编辑距离</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-基于哈希标签的字符串匹配方法"><span class="toc-text">2. 基于哈希标签的字符串匹配方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-概述"><span class="toc-text">2.1 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2用到的函数"><span class="toc-text">2.2用到的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3计算字符串q-gram子串哈希值"><span class="toc-text">2.3计算字符串q-gram子串哈希值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-哈希标签的计算"><span class="toc-text">2.4 哈希标签的计算</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS读写流程、文件权限、安全模式"><span class="toc-text">HDFS读写流程、文件权限、安全模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-HDFS读写流程"><span class="toc-text">1.HDFS读写流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）HDFS读取文件"><span class="toc-text">（1）HDFS读取文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）HDFS写入文件"><span class="toc-text">（2）HDFS写入文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-HDFS文件权限"><span class="toc-text">2.HDFS文件权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-HDFS安全模式"><span class="toc-text">3.HDFS安全模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-HDFS-namenode和secondarynamenode文件合并过程"><span class="toc-text">4.HDFS namenode和secondarynamenode文件合并过程</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>

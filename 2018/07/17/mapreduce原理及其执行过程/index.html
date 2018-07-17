@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="Zhanbin" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        mapreduce原理及其执行过程｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2018/07/17/mapreduce原理及其执行过程/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Zhanbin
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/分类阅读/">分类阅读</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="/2018/07/17/mapreduce原理及其执行过程/header.png">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/2018/07/17/mapreduce原理及其执行过程/header.png');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>mapreduce原理及其执行过程</h1>
+                    
+                    <span class="meta">
+                         作者 zhan-bin
+                        <span>
+                          日期 2018-07-17
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#hadoop"
+                           title="hadoop">hadoop</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            mapreduce原理及其执行过程
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="mapreduce原理及其执行过程"><a href="#mapreduce原理及其执行过程" class="headerlink" title="mapreduce原理及其执行过程"></a>mapreduce原理及其执行过程</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><ul>
+<li>MapReduce是一种编程模型，用于大规模数据集（大于1TB）的并行运算。概念”Map（映射）”和”Reduce（归约）”，是它们的主要思想，都是从函数式编程语言里借来的，还有从矢量编程语言里借来的特性。它极大地方便了编程人员在不会分布式并行编程的情况下，将自己的程序运行在分布式系统上。 当前的软件实现是指定一个Map（映射）函数，用来把一组键值对映射成一组新的键值对，指定并发的Reduce（归约）函数，用来保证所有映射的键值对中的每一个共享相同的键组。</li>
+<li>MapReduce是面向大数据并行处理的计算模型、框架和平台，它隐含了以下三层含义：<br>1）MapReduce是一个基于集群的高性能并行计算平台（Cluster Infrastructure）。它允许用市场上普通的商用服务器构成一个包含数十、数百至数千个节点的分布和并行计算集群。<br>2）MapReduce是一个并行计算与运行软件框架（Software Framework）。它提供了一个庞大但设计精良的并行计算软件框架，能自动完成计算任务的并行化处理，自动划分计算数据和计算任务，在集群节点上自动分配和执行任务以及收集计算结果，将数据分布存储、数据通信、容错处理等并行计算涉及到的很多系统底层的复杂细节交由系统负责处理，大大减少了软件开发人员的负担。<br>3）MapReduce是一个并行程序设计模型与方法（Programming Model &amp; Methodology）。它借助于函数式程序设计语言Lisp的设计思想，提供了一种简便的并行程序设计方法，用Map和Reduce两个函数编程实现基本的并行计算任务，提供了抽象的操作和并行编程接口，以简单方便地完成大规模数据的编程和计算处理</li>
+</ul>
+<h2 id="2-工作原理"><a href="#2-工作原理" class="headerlink" title="2.工作原理"></a>2.工作原理</h2><h3 id="map-task"><a href="#map-task" class="headerlink" title="map task"></a>map task</h3><p>&emsp;程序会根据InputFormat将输入文件分割成splits，每个split会作为一个map task的输入，每个map task会有一个内存缓冲区，输入数据经过map阶段处理后的中间结果会写入内存缓冲区，并且决定数据写入到哪个partitioner，当写入的数据到达内存缓冲区的的阀值(默认是0.8)，会启动一个线程将内存中的数据溢写入磁盘，同时不影响map中间结果继续写入缓冲区。在溢写过程中，MapReduce框架会对key进行排序，如果中间结果比较大，会形成多个溢写文件，最后的缓冲区数据也会全部溢写入磁盘形成一个溢写文件(最少有一个溢写文件)，如果是多个溢写文件，则最后合并所有的溢写文件为一个文件。</p>
+<h3 id="reduce-task"><a href="#reduce-task" class="headerlink" title="reduce task"></a>reduce task</h3><p>&emsp;当所有的map task完成后，每个map task会形成一个最终文件，并且该文件按区划分。reduce任务启动之前，一个map task完成后，<br>就会启动线程来拉取map结果数据到相应的reduce task，不断地合并数据，为reduce的数据输入做准备，当所有的map tesk完成后，<br>数据也拉取合并完毕后，reduce task 启动，最终将输出输出结果存入HDFS上。</p>
+<h3 id="JobTracker，TaskTracker"><a href="#JobTracker，TaskTracker" class="headerlink" title="JobTracker，TaskTracker"></a>JobTracker，TaskTracker</h3><h4 id="JobTracker"><a href="#JobTracker" class="headerlink" title="JobTracker"></a>JobTracker</h4><ul>
+<li><strong>JobTracker协作作业的运行：</strong> 负责调度分配每一个子任务task运行于TaskTracker上，如果发现有失败的task就重新分配其任务到其他节点。 </li>
+<li>一般情况应该把JobTracker部署在单独的机器上。JobTracker与TaskTracker保持心跳</li>
+<li><strong>JobTracker失败： </strong><br>1：JobTracker失败在所有的失败中是最严重的一种；<br>2：hadoop没有处理jobtracker失败的机制。–它是一个单点故障。<br>3：在未来的新版本中可能可以运行多个JobTracker。<br>4：可以使用ZooKeeper来协作JobTracker。</li>
+</ul>
+<h4 id="TaskTracker"><a href="#TaskTracker" class="headerlink" title="TaskTracker"></a>TaskTracker</h4><ul>
+<li>TaskTracker运行作业划分后的任务<br>TaskTracker是运行在多个节点上的slaver服务。<br>TaskTracker主动与JobTracker通信，接收作业，并负责直接<br>执行每一个任务，为了减少网络带宽TaskTracker最好运行在HDFS的DataNode上； </li>
+</ul>
+<ul>
+<li>TaskTracker失败：<br>1：一个TaskTracker由于崩溃或运行过于缓慢而失败，它会向JobTracker发送“心跳”。<br>2：如果有未完成的作业，JobTracker会重新把这些任务分配到其他的TaskTracker上面运行。<br>3：即使TaskTracker没有失败也可以被JobTracker列入黑名单。 </li>
+</ul>
+<h3 id="MapReduce中Shuffle过程"><a href="#MapReduce中Shuffle过程" class="headerlink" title="MapReduce中Shuffle过程"></a>MapReduce中Shuffle过程</h3><p>Shuffle的过程：描述数据从map task输出到reduce task输入的这段过程。<br>我们对Shuffle过程的期望是：</p>
+<ul>
+<li>完整地从map task端拉取数据到reduce task端 </li>
+<li>跨界点拉取数据时，尽量减少对带宽的不必要消耗</li>
+<li>减小磁盘IO对task执行的影响</li>
+</ul>
+<p><strong>先看map端：</strong><br><img src="/2018/07/17/mapreduce原理及其执行过程/3.png" alt="3"></p>
+<p>split被送入map task后，程序库决定数据结果数据属于哪个partitioner，写入到内存缓冲区，到达阀值，开启溢写过程，进行key排序，<br>如果有combiner步骤，则会对相同的key做归并处理，最终多个溢写文件合并为一个文件。</p>
+<p><strong>再看reduce端：</strong><br><img src="/2018/07/17/mapreduce原理及其执行过程/4.png" alt="4"></p>
+<p>多个map task形成的最终文件的对应partitioner会被对应的reduce task拉取至内存缓冲区，对可能形成多个溢写文件合并，最终<br>作为resuce task的数据输入 。</p>
+<h2 id="3-Word-Count举例"><a href="#3-Word-Count举例" class="headerlink" title="3.Word Count举例"></a>3.Word Count举例</h2><h3 id="Word-Count过程示例"><a href="#Word-Count过程示例" class="headerlink" title="Word Count过程示例"></a>Word Count过程示例</h3><p><img src="/2018/07/17/mapreduce原理及其执行过程/2.png" alt="4"></p>
+<h3 id="MapReduce编程主要组件"><a href="#MapReduce编程主要组件" class="headerlink" title="MapReduce编程主要组件"></a>MapReduce编程主要组件</h3><p>InputFormat类：分割成多个splits和每行怎么解析。<br>Mapper类：对输入的每对&lt;key,value&gt;生成中间结果。<br>Combiner类：在map端，对相同的key进行合并。<br>Partitioner类：在shuffle过程中，将按照key值将中间结果分为R份，每一份都由一个reduce去完成。<br>Reducer类：对所有的map中间结果，进行合并。<br>OutputFormat类：负责输出结果格式。</p>
+<h3 id="Word-Count编程实现"><a href="#Word-Count编程实现" class="headerlink" title="Word Count编程实现"></a>Word Count编程实现</h3><p>参考链接：<a href="https://zhan-bin.github.io/2018/07/07/Windows%E4%B8%8A%E7%AC%AC%E4%B8%80%E4%B8%AAmapreduce%E7%A8%8B%E5%BA%8F/" target="_blank" rel="noopener">Word Count实例</a></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/07/17/HDFS读写流程、文件权限、安全模式/" data-toggle="tooltip" data-placement="top"
+                           title="HDFS读写流程、文件权限、安全模式">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mapreduce原理及其执行过程"><span class="toc-text">mapreduce原理及其执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-定义"><span class="toc-text">1.定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-工作原理"><span class="toc-text">2.工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#map-task"><span class="toc-text">map task</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reduce-task"><span class="toc-text">reduce task</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JobTracker，TaskTracker"><span class="toc-text">JobTracker，TaskTracker</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JobTracker"><span class="toc-text">JobTracker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TaskTracker"><span class="toc-text">TaskTracker</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MapReduce中Shuffle过程"><span class="toc-text">MapReduce中Shuffle过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Word-Count举例"><span class="toc-text">3.Word Count举例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Word-Count过程示例"><span class="toc-text">Word Count过程示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MapReduce编程主要组件"><span class="toc-text">MapReduce编程主要组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Word-Count编程实现"><span class="toc-text">Word Count编程实现</span></a></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://www.kofes.cn/">kofes</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/2913880653">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Zhan-bin">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Zhanbin 2018
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="touxiang.jpg">
+</body>
+
+</html>
