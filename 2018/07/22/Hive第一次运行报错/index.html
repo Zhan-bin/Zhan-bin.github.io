@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Hadoop集群上运行mapreduce｜undefined
+        Hive第一次运行报错｜undefined
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2018/07/21/Hadoop集群上运行mapreduce/">
+    <link rel="canonical" href="http://yoursite.com/2018/07/22/Hive第一次运行报错/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -127,13 +127,13 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="/2018/07/21/Hadoop集群上运行mapreduce/header.png">
+<img class="wechat-title-img" src="/2018/07/22/Hive第一次运行报错/header.png">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('/2018/07/21/Hadoop集群上运行mapreduce/header.png');
+        background-image: url('/2018/07/22/Hive第一次运行报错/header.png');
     }
 
     
@@ -144,12 +144,12 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Hadoop集群上运行mapreduce</h1>
+                    <h1>Hive第一次运行报错</h1>
                     
                     <span class="meta">
                          作者 zhan-bin
                         <span>
-                          日期 2018-07-21
+                          日期 2018-07-22
                          </span>
                     </span>
                     <div class="tags text-center">
@@ -164,7 +164,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Hadoop集群上运行mapreduce
+            Hive第一次运行报错
         </span>
     </div>
 </header>
@@ -175,87 +175,9 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h1 id="Hadoop集群上运行mapreduce"><a href="#Hadoop集群上运行mapreduce" class="headerlink" title="Hadoop集群上运行mapreduce"></a>Hadoop集群上运行mapreduce</h1><p>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a></p>
-<p>日期：2018-7-21</p>
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
-<li>hadoop2.9.1</li>
-<li>jdk1.8.0_171</li>
-<li>centOS7</li>
-<li>xshell</li>
-<li>windows10</li>
-</ul>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>&emsp;本文是在windows上的eclipse开发mapper reduce 使用yarn框架，并在虚拟机Hadoop集群上运行程序，大致过程是：先将编写好的代码文件打包好上传到虚拟机然后执行jar文件。</p>
-<h2 id="hadoop集群上运行hadoop自带程序示例（word-count）"><a href="#hadoop集群上运行hadoop自带程序示例（word-count）" class="headerlink" title="hadoop集群上运行hadoop自带程序示例（word count）"></a>hadoop集群上运行hadoop自带程序示例（word count）</h2><p>&emsp;这里运行hadoop安装目录下\share\hadoop\mapreduce里面的“hadoop-mapreduce-examples-2.9.1”文件的wordcount<br><strong>1.首先进入hadoop安装目录打开yarn集群，执行如下命令</strong></p>
-<ul>
-<li>（首先确认配置好了yarn-site.xml和mapred-site.xml文件没配置的参考：<a href="https://zhan-bin.github.io/2018/06/30/yarn%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">yarn配置 - 点击打开</a>）<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/hadoop/hadoop #进入到hadoop安装目录</span><br><span class="line">./sbin/<span class="built_in">start</span>-all.sh</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><strong>2.打开集群之后先在集群创建输入文件夹以及上传输入文件，执行如下代码</strong></p>
-<ul>
-<li>首先在本地创建一个输入文件（这里是input.txt）<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch input.txt //创建input.txt文件</span><br><span class="line">ll //列出当前目录文件，查看是否创建成功</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/2018/07/21/Hadoop集群上运行mapreduce/1.jpg" alt="1"></p>
-<ul>
-<li>然后向input.txt添加自定义内容,如图是我所添加的内容<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ./input.txt</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/2018/07/21/Hadoop集群上运行mapreduce/2.jpg" alt="2"></p>
-<ul>
-<li><p>创建input文件夹作为存放输入文件的目录</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop dfs -<span class="built_in">mkdir</span> /input</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看是否创建成功</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop <span class="built_in">fs</span> -ls /</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/2018/07/21/Hadoop集群上运行mapreduce/3.jpg" alt="3"></p>
-<ul>
-<li>上传input文件到input目录<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop <span class="built_in">fs</span> -put ./input.txt /input</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><strong>3.打开之后找到mapreduce的自带示例代码文件</strong></p>
-<ul>
-<li><p>执行命令查看</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/hadoop/hadoop #进入到hadoop安装目录</span><br><span class="line"><span class="built_in">find</span> ./ -name *example*.jar</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>找到hadoop-mapreduce-examples-x.x.x的文件，如图<br><img src="/2018/07/21/Hadoop集群上运行mapreduce/4.png" alt="4"></p>
-</li>
-<li><p>然后执行如下命令（注意使用自己的路径，版本不同文件名会有所不同）</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar /share/hadoop/mapreduce/hadoop-mapreduce-examples-<span class="number">2</span>.<span class="number">9</span>.<span class="number">1</span>.jar wordcount /input/input.txt /output</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>没有报错则说明运行成功了</p>
-</li>
-<li><p id="1">查看运行结果</p><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop <span class="built_in">fs</span> -get /out ./ #将输出文件夹下载到本地目录</span><br><span class="line">ll  #这里是下载到当前目录，列出当前目录下文件查看是否下载成功</span><br><span class="line">ll ./out #查看输出文件夹里面的文件</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/2018/07/21/Hadoop集群上运行mapreduce/5.png" alt="5"></p>
-<ul>
-<li>打开part-r-00000文件查看运行结果<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ./out/part-r-<span class="number">00000</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/2018/07/21/Hadoop集群上运行mapreduce/6.png" alt="6"></p>
-<h2 id="windows宿主机eclipse上传代码至hadoop集群运行"><a href="#windows宿主机eclipse上传代码至hadoop集群运行" class="headerlink" title="windows宿主机eclipse上传代码至hadoop集群运行"></a>windows宿主机eclipse上传代码至hadoop集群运行</h2><p><strong>1.配置eclipse</strong></p>
-<ul>
-<li><strong>配置eclipse参考链接：</strong><a href="https://zhan-bin.github.io/2018/07/06/win%E9%85%8D%E7%BD%AEeclipse/" target="_blank" rel="noopener">hadoop windows配置eclipse</a></li>
-</ul>
-<p><strong>2.代码</strong></p>
-<ul>
-<li>之前写了在windows本地运行wordcount的案例，这里参考之前的那篇文章，链接：<a href="https://zhan-bin.github.io/2018/07/07/Windows%E4%B8%8A%E7%AC%AC%E4%B8%80%E4%B8%AAmapreduce%E7%A8%8B%E5%BA%8F/" target="_blank" rel="noopener">第一个mapreduce程序 - 点击打开</a></li>
-</ul>
-<p><strong>3.运行</strong></p>
-<ul>
-<li><p>基于之前的代码修改下配置即可，将Test主类修改一下，加上hdfs集群的文件系统地址，下面的输入输出路径也换成相应的hdfs集群上的。如下图<br><img src="/2018/07/21/Hadoop集群上运行mapreduce/7.png" alt="7"></p>
-</li>
-<li><p>运行之前要先将刚刚的输出文件夹删除，或者在java代码设置成另一个文件夹。</p>
-</li>
-<li><p>run on hadoop<br><img src="/2018/07/21/Hadoop集群上运行mapreduce/8.png" alt="8"></p>
-</li>
-<li><p>没有报错说明是运行成功了<br><img src="/2018/07/21/Hadoop集群上运行mapreduce/9.png" alt="9"></p>
-</li>
-<li><p>查看运行结果<br>方法同上，这里就不再阐述了 <a href="#1">查看运行结果</a></p>
-</li>
-</ul>
+                <h1 id="Hive运行报错"><a href="#Hive运行报错" class="headerlink" title="Hive运行报错"></a>Hive运行报错</h1><p>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a><br>日期：2018-07-22</p>
+<h2 id="Hive运行报错解决"><a href="#Hive运行报错解决" class="headerlink" title="Hive运行报错解决"></a>Hive运行报错解决</h2><p>刚安装完hive启动时很多时候会报如下错：<br>异常信息：<br>Exception in thread “main” Java.lang.RuntimeException: java.lang.IllegalArgumentException: java.net.URISyntaxException: Relative path in absolute URI: ${system:java.io.tmpdir%7D/$%7Bsystem:user.name%7D<br>        at org.apache.Hadoop.hive.ql.session.SessionState.start(SessionState.java:444)<br>        at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:672)<br>        at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:616)<br>        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br>        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)<br>        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br>        at java.lang.reflect.Method.invoke(Method.java:606)<br>        at org.apache.hadoop.util.RunJar.main(RunJar.java:160)<br>Caused by: java.lang.IllegalArgumentException: java.net.URISyntaxException: Relative path in absolute URI: ${system:java.io.tmpdir%7D/$%7Bsystem:user.name%7D<br>        at org.apache.hadoop.fs.Path.initialize(Path.java:148)<br>        at org.apache.hadoop.fs.Path.<init>(Path.java:126)<br>        at org.apache.hadoop.hive.ql.session.SessionState.createSessionDirs(SessionState.java:487)<br>        at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:430)<br>        … 7 more<br>Caused by: java.net.URISyntaxException: Relative path in absolute URI: ${system:java.io.tmpdir%7D/$%7Bsystem:user.name%7D<br>        at java.net.URI.checkPath(URI.java:1804)<br>        at java.net.URI.<init>(URI.java:752)<br>        at org.apache.hadoop.fs.Path.initialize(Path.java:145)<br>        … 10 more<br>解决：<br>查看hive-site.xml配置，会看到配置值含有”system:java.io.tmpdir”的配置项<br>2.新建文件夹在hive目录下新建一个tmp目录<br>3.将含有”system:java.io.tmpdir”的配置项的值修改为如上地址<br>把文件里全部的${system:java.io.tmpdir}改成：/home/grid/apache-hive-1.2.1-bin/tmp</init></init></p>
+<font color="red">配置文件内容很多，用vi打开人工找不怎么现实，建议将配置文件下载到windows下用记事本搜索替换。</font>
 
                 <hr>
                 
@@ -263,14 +185,14 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2018/07/22/Hive第一次运行报错/" data-toggle="tooltip" data-placement="top"
-                           title="Hive第一次运行报错">&larr; Previous Post</a>
+                        <a href="/2018/07/22/Hive-mysql安装/" data-toggle="tooltip" data-placement="top"
+                           title="Hive+mysql安装">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2018/07/17/mapreduce原理及其执行过程/" data-toggle="tooltip" data-placement="top"
-                           title="mapreduce原理及其执行过程">Next Post &rarr;</a>
+                        <a href="/2018/07/21/Hadoop集群上运行mapreduce/" data-toggle="tooltip" data-placement="top"
+                           title="Hadoop集群上运行mapreduce">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -286,7 +208,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hadoop集群上运行mapreduce"><span class="toc-text">Hadoop集群上运行mapreduce</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hadoop集群上运行hadoop自带程序示例（word-count）"><span class="toc-text">hadoop集群上运行hadoop自带程序示例（word count）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windows宿主机eclipse上传代码至hadoop集群运行"><span class="toc-text">windows宿主机eclipse上传代码至hadoop集群运行</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hive运行报错"><span class="toc-text">Hive运行报错</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hive运行报错解决"><span class="toc-text">Hive运行报错解决</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
