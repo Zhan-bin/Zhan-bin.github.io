@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        markdown测试｜undefined
+        初始化hive元数据库出错｜undefined
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2018/07/26/markdown测试/">
+    <link rel="canonical" href="http://yoursite.com/2018/08/05/初始化hive元数据库出错/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -127,14 +127,13 @@
 <!--only post-->
 
 
-<img class="wechat-title-img"
-     src="post-default.jpg">
+<img class="wechat-title-img" src="/2018/08/05/初始化hive元数据库出错/header.png">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('post-default.jpg')
+        background-image: url('/2018/08/05/初始化hive元数据库出错/header.png');
     }
 
     
@@ -145,15 +144,18 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>markdown测试</h1>
+                    <h1>初始化hive元数据库出错</h1>
                     
                     <span class="meta">
                          作者 zhan-bin
                         <span>
-                          日期 2018-07-26
+                          日期 2018-08-05
                          </span>
                     </span>
                     <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#hadoop"
+                           title="hadoop">hadoop</a>
                         
                     </div>
                 </div>
@@ -162,7 +164,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            markdown测试
+            初始化hive元数据库出错
         </span>
     </div>
 </header>
@@ -173,31 +175,51 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>$$<br>Ф β △ τ αφωψπΩΓεγµσ←↑→θηδ≤≥<br>$$</p>
-<p>$$ x^2 $$</p>
-<p>$$ ρ $$</p>
-<p>$$  </p>
-<p>$$</p>
-<p>$$\sum_{i=0}N\int_{a}{b}g(t,i)\text{d}t$$</p>
-<p>$ J \left ( \theta\right )= \frac{1}{2m}\sum_{i=1}^{m}\left ( h_{\theta }\left ( x^{\left ( i \right )} \right )-y^{\left ( i \right )} \right )^{2} $</p>
-<p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \left\lbrace 
-\sum_{i=0}^{n}i^{2}=\frac{2a}{x^2+1}                            
-\right\rbrace" alt=""></p>
+                <h1 id="初始化hive元数据库时出现-time-zone错误"><a href="#初始化hive元数据库时出现-time-zone错误" class="headerlink" title="初始化hive元数据库时出现 time zone错误"></a>初始化hive元数据库时出现 time zone错误</h1><h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><ul>
+<li>初始化hive元数据库的时候，很容易出现time zone的错误，如下所示：<br>.<br><img src="/2018/08/05/初始化hive元数据库出错/1.png" alt="1"></li>
+</ul>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul>
+<li><p><strong>（1）使用 mysql -p 命令启动mysql</strong></p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -p</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>（2）在mysql中执行show variables like ‘%time_zone%’;</strong></p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like '<span class="variable">%time_zone%</span>';</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2018/08/05/初始化hive元数据库出错/2.png" alt="1"></p>
+<ul>
+<li><strong>（3）输入select nows();</strong><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select nows();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2018/08/05/初始化hive元数据库出错/3.png" alt="1"></p>
+<ul>
+<li><strong>（4）退出mysql，在终端执行date命令</strong><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">date</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2018/08/05/初始化hive元数据库出错/4.png" alt="1"></p>
+<ul>
+<li><strong>（5）在mysql中执行 set time_zone=SYSTEM;</strong><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> time_zone=SYSTEM;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2018/08/05/初始化hive元数据库出错/5.png" alt="1"></p>
+<ul>
+<li><p><strong>（6）执行 set global time_zone=’+8:00’;</strong></p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> global time_zone='+<span class="number">8</span>:<span class="number">00</span>';</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>（7）执行 flush privileges;</strong></p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2018/08/05/初始化hive元数据库出错/" data-toggle="tooltip" data-placement="top"
-                           title="初始化hive元数据库出错">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2018/07/22/Hive-mysql安装/" data-toggle="tooltip" data-placement="top"
-                           title="Hive+mysql安装">Next Post &rarr;</a>
+                        <a href="/2018/07/26/markdown测试/" data-toggle="tooltip" data-placement="top"
+                           title="markdown测试">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -213,7 +235,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#公式"><span class="toc-text">公式</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#初始化hive元数据库时出现-time-zone错误"><span class="toc-text">初始化hive元数据库时出现 time zone错误</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#错误"><span class="toc-text">错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
