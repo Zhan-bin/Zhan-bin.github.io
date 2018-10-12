@@ -176,7 +176,10 @@
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
                 <h1 id="hbase1-2-6-安装"><a href="#hbase1-2-6-安装" class="headerlink" title="hbase1.2.6 安装"></a>hbase1.2.6 安装</h1><p>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a><br>日期：2018-08-05</p>
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>这里的配置为 VMware+CentOS7+hadoop2.9.1+hive2.3.3+mysql-8.0.11-linux-glibc2.12-x86_64</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><blockquote>
+<p>安装Hbase之前需要安装hadoop和zookeeper，Hbase是要依赖于zookeeper来运行的，hbase也有自带的zookeeper，但我们这里Hbase用自己安装的zookeeper来运行。</p>
+</blockquote>
+<p>这里的配置为 VMware+CentOS7+hadoop2.9.1+hive2.3.3+mysql-8.0.11-linux-glibc2.12-x86_64</p>
 <p>这里我下载的镜像是 <strong>CentOS-7-x86_64-Minimal-1804.iso</strong></p>
 <p><a href="http://101.110.118.25/isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso" target="_blank" rel="noopener">CentOS系统镜像下载地址-点击进入</a></p>
 <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">JDK下载地址-点击进入</a></p>
@@ -213,7 +216,23 @@
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hbase.rootdir&lt;/name&gt;</span><br><span class="line">       &lt;value&gt;hdfs://master:<span class="number">9000</span>/hbase&lt;/value&gt;</span><br><span class="line">        &lt;!--配置为core-site.xml 中的<span class="built_in">fs</span>.defaultFS --&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hbase.master&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;master:<span class="number">60000</span>&lt;/value&gt;</span><br><span class="line">        &lt;!-- Hbase HA 方式下只需配置端口 --&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hbase.tmp.<span class="built_in">dir</span>&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;/home/hadoop/hbase/tmp&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;</span><br><span class="line">       &lt;value&gt;<span class="number">169</span>.<span class="number">254</span>.<span class="number">84</span>.<span class="number">3</span>,<span class="number">169</span>.<span class="number">254</span>.<span class="number">84</span>.<span class="number">4</span>,<span class="number">169</span>.<span class="number">254</span>.<span class="number">84</span>.<span class="number">5</span>&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hbase.zoopkeeper.property.dataDir&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;/home/hadoop/zookeeper/data&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hbase.zookeeper.property.clientPort&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;<span class="number">2181</span>&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="5-配置环境变量"><a href="#5-配置环境变量" class="headerlink" title="5.配置环境变量"></a>5.配置环境变量</h2><ul>
+<h2 id="5-修改配置文件regionservers"><a href="#5-修改配置文件regionservers" class="headerlink" title="5.修改配置文件regionservers"></a>5.修改配置文件regionservers</h2><ul>
+<li><p>regionservers是设置运行regionserver的机器的文件，在里面写入机器的IP地址或ip映射主机名即可。这里我是将master和slaver1设为Hmaster的运行节点，其他的设为Hregion。这里我的配置文件设置如下：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/hadoop/hbase/conf #进入到hbase配置文件存放目录</span><br><span class="line">vi ./regionservers</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置文件内添加如下内容：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">slaver1</span><br><span class="line">slaver2</span><br><span class="line">slaver3</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="6-修改配置文件backup-masters"><a href="#6-修改配置文件backup-masters" class="headerlink" title="6.修改配置文件backup-masters"></a>6.修改配置文件backup-masters</h2><ul>
+<li><p>backup-masters文件可以设置作为Hmaster（hbase管理节点）的机器，可以设置多台机器，在hbase启动之后对应机器jps都可以看到Hmaster的进程，但是在集群中使用的Hmaster只有一台，其他的都只是备用的，正在运行的Hmaster宕掉之后就会选一个备用的Hmaster替代使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ./backup-masters</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这里我是将master和slaver1作为Hmaster节点，backup-masters文件内容添加如下：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">master</span><br><span class="line">slzver1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="7-配置环境变量"><a href="#7-配置环境变量" class="headerlink" title="7.配置环境变量"></a>7.配置环境变量</h2><ul>
 <li><p>打开profile文件</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br></pre></td></tr></table></figure>
 </li>
@@ -222,11 +241,23 @@
 </li>
 </ul>
 <p><img src="/2018/08/05/hbase安装/6.png" alt="6"></p>
-<h2 id="4-启动Hbase"><a href="#4-启动Hbase" class="headerlink" title="4.启动Hbase"></a>4.启动Hbase</h2><ul>
+<h2 id="8-启动Hbase"><a href="#8-启动Hbase" class="headerlink" title="8.启动Hbase"></a>8.启动Hbase</h2><ul>
+<li>启动Hbase之前需要先启动hdfs和zookeeper</li>
 <li>进入到hbase安装目录下的bin启动hbase<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./<span class="built_in">start</span>-hbase.sh</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><img src="/2018/08/05/hbase安装/5.png" alt="1"><br>看见有一个HMaster就说明启动成功了。</p>
+<p><img src="/2018/08/05/hbase安装/5.png" alt="1"></p>
+<ul>
+<li>输入jps后看见有一个HMaster就说明启动成功了。</li>
+<li><p>之后再后进入hbase的bin下输入命令进入Hbase的shell模式</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/hadoop/hbase/bin</span><br><span class="line">./hbase shell</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开之后没报错就是成功了。</p>
+</li>
+</ul>
+<blockquote>
+<p>注意启动之前需要在系统中输入date查询下每台机器的系统时间，最好一样或者差个几秒钟，如果相差太远（超过5分钟）就会导致hbase无法正常运行。<br>使用本机的ip地址映射名称设置配置文件很可能会出现hostname无法识别，然后hbase会异常停止。只需要将hbase-site.xml文件里面的hostname改成对应的ip地址即可。<br>hbase将数据溢写到内存中需要使用 flush ‘表名’ 。<br>在Hbase命令行中退格是要按下 ctrl+退格</p>
+</blockquote>
 
                 <hr>
                 
@@ -257,7 +288,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hbase1-2-6-安装"><span class="toc-text">hbase1.2.6 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-上传并解压文件到安装目录"><span class="toc-text">1.上传并解压文件到安装目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-添加文件链接到hase至解压后的文件夹"><span class="toc-text">2.添加文件链接到hase至解压后的文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-修改配置文件hbase-env-sh"><span class="toc-text">3.修改配置文件hbase-env.sh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-修改配置文件hbase-site-xml"><span class="toc-text">3.修改配置文件hbase-site.xml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-配置环境变量"><span class="toc-text">5.配置环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-启动Hbase"><span class="toc-text">4.启动Hbase</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hbase1-2-6-安装"><span class="toc-text">hbase1.2.6 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-上传并解压文件到安装目录"><span class="toc-text">1.上传并解压文件到安装目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-添加文件链接到hase至解压后的文件夹"><span class="toc-text">2.添加文件链接到hase至解压后的文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-修改配置文件hbase-env-sh"><span class="toc-text">3.修改配置文件hbase-env.sh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-修改配置文件hbase-site-xml"><span class="toc-text">3.修改配置文件hbase-site.xml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-修改配置文件regionservers"><span class="toc-text">5.修改配置文件regionservers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-修改配置文件backup-masters"><span class="toc-text">6.修改配置文件backup-masters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-配置环境变量"><span class="toc-text">7.配置环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-启动Hbase"><span class="toc-text">8.启动Hbase</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
