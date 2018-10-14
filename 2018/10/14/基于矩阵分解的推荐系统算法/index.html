@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="Zhanbin" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        基于矩阵分解的推荐系统算法｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2018/10/14/基于矩阵分解的推荐系统算法/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Zhanbin
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/分类阅读/">分类阅读</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="post-default.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('post-default.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>基于矩阵分解的推荐系统算法</h1>
+                    
+                    <span class="meta">
+                         作者 zhan-bin
+                        <span>
+                          日期 2018-10-14
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#推荐系统"
+                           title="推荐系统">推荐系统</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            基于矩阵分解的推荐系统算法
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="基于矩阵分解的推荐系统算法"><a href="#基于矩阵分解的推荐系统算法" class="headerlink" title="基于矩阵分解的推荐系统算法"></a>基于矩阵分解的推荐系统算法</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>&emsp;基于矩阵分解的推荐系统是属于隐语义分析模型的其中一种，矩阵分解的推荐系统的原理是将原始的矩阵进行分解，再使用分解之后的两个矩阵填充原始矩阵的没有值的部分。<br>&emsp;我们这里将原始矩阵分解成（假设原始矩阵为R<sub>m*n</sub>）可以将其分解成两个矩阵P<sub>m*k</sub>、Q<sub>k*n</sub>的乘积：R<sub>m*n</sub>≈P<sub>m*k</sub>*Q<sub>k*n</sub></p>
+<h3 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h3><p>这里使用机器学习的梯度下降来进行系数矩阵的分解</p>
+<p><strong>构建损失函数</strong></p>
+<ul>
+<li><p>我们使用原始评分矩阵和生成的矩阵的误差的平方作为损失函数即：<br><img src="/2018/10/14/基于矩阵分解的推荐系统算法/f1.png" alt="f1"></p>
+</li>
+<li><p>再加入正则项：<br><img src="/2018/10/14/基于矩阵分解的推荐系统算法/f2.png" alt="f2"></p>
+</li>
+<li><p>求解函数的负梯度：<br><img src="/2018/10/14/基于矩阵分解的推荐系统算法/f3.png" alt="f3"></p>
+</li>
+<li><p>迭代更新变量：<br><img src="/2018/10/14/基于矩阵分解的推荐系统算法/f4.png" alt="f4"></p>
+</li>
+<li><p>最后是预测，基于误差范围内求出来的两个分解出来的矩阵对原始矩阵进行还原<br><img src="/2018/10/14/基于矩阵分解的推荐系统算法/f5.png" alt="f5"> </p>
+</li>
+</ul>
+<h2 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h2><p>&emsp;我们这里举个简单的例子：假如有如下的一个用户对商品评分的矩阵</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>V1</th>
+<th>V2</th>
+<th>V3</th>
+<th>V4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Uesr1</strong></td>
+<td>5</td>
+<td>3</td>
+<td>-</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Uesr2</strong></td>
+<td>4</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Uesr3</strong></td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>Uesr4</strong></td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Uesr5</strong></td>
+<td>-</td>
+<td>1</td>
+<td>5</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">from numpy import *</span><br><span class="line"></span><br><span class="line">def load_data(<span class="built_in">path</span>):</span><br><span class="line">    f = open(<span class="built_in">path</span>)</span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():</span><br><span class="line">        arr = []</span><br><span class="line">        lines = line.strip().split("\t")</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="keyword">if</span> x != "-":</span><br><span class="line">                arr.<span class="built_in">append</span>(float(x))</span><br><span class="line"><span class="function">            else:</span></span><br><span class="line"><span class="function">                <span class="title">arr.append</span>(<span class="title">float</span>(0))</span></span><br><span class="line"><span class="function">        #<span class="title">print</span> <span class="title">arr</span></span></span><br><span class="line"><span class="function">        <span class="title">data.append</span>(<span class="title">arr</span>)</span></span><br><span class="line"><span class="function">    #<span class="title">print</span> <span class="title">data</span></span></span><br><span class="line"><span class="function">    <span class="title">return</span> <span class="title">data</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">gradAscent</span>(<span class="title">data</span>, <span class="title">K</span>):</span></span><br><span class="line"><span class="function">    <span class="title">dataMat</span> = <span class="title">mat</span>(<span class="title">data</span>)</span></span><br><span class="line"><span class="function">    <span class="title">print</span> (<span class="title">dataMat</span>)</span></span><br><span class="line"><span class="function">    <span class="title">m</span>, <span class="title">n</span> = <span class="title">shape</span>(<span class="title">dataMat</span>)</span></span><br><span class="line"><span class="function">    <span class="title">p</span> = <span class="title">mat</span>(<span class="title">random.random</span>((<span class="title">m</span>, <span class="title">K</span>)))</span></span><br><span class="line"><span class="function">    <span class="title">q</span> = <span class="title">mat</span>(<span class="title">random.random</span>((<span class="title">K</span>, <span class="title">n</span>)))</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="title">alpha</span> = 0.0002</span></span><br><span class="line"><span class="function">    <span class="title">beta</span> = 0.02</span></span><br><span class="line"><span class="function">    <span class="title">maxCycles</span> = 10000</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="title">for</span> <span class="title">step</span> <span class="title">in</span> <span class="title">range</span>(<span class="title">maxCycles</span>):</span></span><br><span class="line"><span class="function">        <span class="title">for</span> <span class="title">i</span> <span class="title">in</span> <span class="title">range</span>(<span class="title">m</span>):</span></span><br><span class="line"><span class="function">            <span class="title">for</span> <span class="title">j</span> <span class="title">in</span> <span class="title">range</span>(<span class="title">n</span>):</span></span><br><span class="line"><span class="function">                <span class="title">if</span> <span class="title">dataMat</span>[<span class="title">i</span>,<span class="title">j</span>] &gt; 0:</span></span><br><span class="line"><span class="function">                    #<span class="title">print</span> <span class="title">dataMat</span>[<span class="title">i</span>,<span class="title">j</span>]</span></span><br><span class="line"><span class="function">                    <span class="title">error</span> = <span class="title">dataMat</span>[<span class="title">i</span>,<span class="title">j</span>]</span></span><br><span class="line"><span class="function">                    <span class="title">for</span> <span class="title">k</span> <span class="title">in</span> <span class="title">range</span>(<span class="title">K</span>):</span></span><br><span class="line"><span class="function">                        <span class="title">error</span> = <span class="title">error</span> - <span class="title">p</span>[<span class="title">i</span>,<span class="title">k</span>]*<span class="title">q</span>[<span class="title">k</span>,<span class="title">j</span>]</span></span><br><span class="line"><span class="function">                    <span class="title">for</span> <span class="title">k</span> <span class="title">in</span> <span class="title">range</span>(<span class="title">K</span>):</span></span><br><span class="line"><span class="function">                        <span class="title">p</span>[<span class="title">i</span>,<span class="title">k</span>] = <span class="title">p</span>[<span class="title">i</span>,<span class="title">k</span>] + <span class="title">alpha</span> * (2 * <span class="title">error</span> * <span class="title">q</span>[<span class="title">k</span>,<span class="title">j</span>] - <span class="title">beta</span> * <span class="title">p</span>[<span class="title">i</span>,<span class="title">k</span>])</span></span><br><span class="line"><span class="function">                        <span class="title">q</span>[<span class="title">k</span>,<span class="title">j</span>] = <span class="title">q</span>[<span class="title">k</span>,<span class="title">j</span>] + <span class="title">alpha</span> * (2 * <span class="title">error</span> * <span class="title">p</span>[<span class="title">i</span>,<span class="title">k</span>] - <span class="title">beta</span> * <span class="title">q</span>[<span class="title">k</span>,<span class="title">j</span>])</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        <span class="title">loss</span> = 0.0</span></span><br><span class="line"><span class="function">        <span class="title">for</span> <span class="title">i</span> <span class="title">in</span> <span class="title">range</span>(<span class="title">m</span>):</span></span><br><span class="line"><span class="function">            <span class="title">for</span> <span class="title">j</span> <span class="title">in</span> <span class="title">range</span>(<span class="title">n</span>):</span></span><br><span class="line"><span class="function">                <span class="title">if</span> <span class="title">dataMat</span>[<span class="title">i</span>,<span class="title">j</span>] &gt; 0:</span></span><br><span class="line"><span class="function">                    <span class="title">error</span> = 0.0</span></span><br><span class="line"><span class="function">                    <span class="title">for</span> <span class="title">k</span> <span class="title">in</span> <span class="title">range</span>(<span class="title">K</span>):</span></span><br><span class="line"><span class="function">                        <span class="title">error</span> = <span class="title">error</span> + <span class="title">p</span>[<span class="title">i</span>,<span class="title">k</span>]*<span class="title">q</span>[<span class="title">k</span>,<span class="title">j</span>]</span></span><br><span class="line"><span class="function">                    <span class="title">loss</span> = (<span class="title">dataMat</span>[<span class="title">i</span>,<span class="title">j</span>] - <span class="title">error</span>) * (<span class="title">dataMat</span>[<span class="title">i</span>,<span class="title">j</span>] - <span class="title">error</span>)</span></span><br><span class="line"><span class="function">                    <span class="title">for</span> <span class="title">k</span> <span class="title">in</span> <span class="title">range</span>(<span class="title">K</span>):</span></span><br><span class="line"><span class="function">                        <span class="title">loss</span> = <span class="title">loss</span> + <span class="title">beta</span> * (<span class="title">p</span>[<span class="title">i</span>,<span class="title">k</span>] * <span class="title">p</span>[<span class="title">i</span>,<span class="title">k</span>] + <span class="title">q</span>[<span class="title">k</span>,<span class="title">j</span>] * <span class="title">q</span>[<span class="title">k</span>,<span class="title">j</span>]) / 2</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        <span class="title">if</span> <span class="title">loss</span> &lt; 0.001:</span></span><br><span class="line"><span class="function">            <span class="title">break</span></span></span><br><span class="line"><span class="function">        #<span class="title">print</span> <span class="title">step</span></span></span><br><span class="line"><span class="function">        <span class="title">if</span> <span class="title">step</span> % 1000 == 0:</span></span><br><span class="line"><span class="function">            <span class="title">print</span> (<span class="title">loss</span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="title">return</span> <span class="title">p</span>, <span class="title">q</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">if</span> <span class="title">__name__</span> == "<span class="title">__main__</span>":</span></span><br><span class="line"><span class="function">    <span class="title">dataMatrix</span> = <span class="title">load_data</span>("<span class="title">F</span>:/<span class="title">input.txt</span>")</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="title">p</span>, <span class="title">q</span> = <span class="title">gradAscent</span>(<span class="title">dataMatrix</span>, 5)</span></span><br><span class="line"><span class="function">    '''</span></span><br><span class="line"><span class="function">    <span class="title">p</span> = <span class="title">mat</span>(<span class="title">ones</span>((4,10)))</span></span><br><span class="line"><span class="function">    <span class="title">print</span> <span class="title">p</span></span></span><br><span class="line"><span class="function">    <span class="title">q</span> = <span class="title">mat</span>(<span class="title">ones</span>((10,5)))</span></span><br><span class="line"><span class="function">    '''</span></span><br><span class="line"><span class="function">    <span class="title">result</span> = <span class="title">p</span> * <span class="title">q</span></span></span><br><span class="line"><span class="function">    #<span class="title">print</span> <span class="title">p</span></span></span><br><span class="line"><span class="function">    #<span class="title">print</span> <span class="title">q</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="title">print</span> (<span class="title">result</span>)</span></span><br></pre></td></tr></table></figure>
+<h3 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="number">5</span>. <span class="number">3</span>. <span class="number">0</span>. <span class="number">1</span>.]</span><br><span class="line"> [<span class="number">4</span>. <span class="number">0</span>. <span class="number">0</span>. <span class="number">1</span>.]</span><br><span class="line"> [<span class="number">1</span>. <span class="number">1</span>. <span class="number">0</span>. <span class="number">5</span>.]</span><br><span class="line"> [<span class="number">1</span>. <span class="number">0</span>. <span class="number">0</span>. <span class="number">4</span>.]</span><br><span class="line"> [<span class="number">0</span>. <span class="number">1</span>. <span class="number">5</span>. <span class="number">4</span>.]]</span><br><span class="line"><span class="number">8</span>.<span class="number">742933118715158</span></span><br><span class="line"><span class="number">0</span>.<span class="number">2989495531365295</span></span><br><span class="line"><span class="number">0</span>.<span class="number">12694735634549725</span></span><br><span class="line"><span class="number">0</span>.<span class="number">0958637440582054</span></span><br><span class="line"><span class="number">0</span>.<span class="number">09099080849799192</span></span><br><span class="line"><span class="number">0</span>.<span class="number">08993263642716288</span></span><br><span class="line"><span class="number">0</span>.<span class="number">08955828202437822</span></span><br><span class="line"><span class="number">0</span>.<span class="number">08933543010584674</span></span><br><span class="line"><span class="number">0</span>.<span class="number">08915629239987193</span></span><br><span class="line"><span class="number">0</span>.<span class="number">08899474524490007</span></span><br><span class="line">[[<span class="number">4</span>.<span class="number">97695113</span> <span class="number">2</span>.<span class="number">98341579</span> <span class="number">3</span>.<span class="number">58483937</span> <span class="number">1</span>.<span class="number">00231939</span>]</span><br><span class="line"> [<span class="number">3</span>.<span class="number">98113924</span> <span class="number">1</span>.<span class="number">87797282</span> <span class="number">3</span>.<span class="number">1003623</span>  <span class="number">1</span>.<span class="number">0004422</span> ]</span><br><span class="line"> [<span class="number">1</span>.<span class="number">00360559</span> <span class="number">0</span>.<span class="number">99132198</span> <span class="number">5</span>.<span class="number">32185081</span> <span class="number">4</span>.<span class="number">97024019</span>]</span><br><span class="line"> [<span class="number">0</span>.<span class="number">9982741</span>  <span class="number">0</span>.<span class="number">69295102</span> <span class="number">4</span>.<span class="number">30688594</span> <span class="number">3</span>.<span class="number">9832334</span> ]</span><br><span class="line"> [<span class="number">2</span>.<span class="number">05423192</span> <span class="number">1</span>.<span class="number">00865589</span> <span class="number">4</span>.<span class="number">98318823</span> <span class="number">3</span>.<span class="number">99242423</span>]]</span><br><span class="line"></span><br><span class="line">Process finished with <span class="keyword">exit</span> code <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/10/14/5种常用的推荐系统算法/" data-toggle="tooltip" data-placement="top"
+                           title="5种常用的推荐系统算法">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/10/12/测试/" data-toggle="tooltip" data-placement="top"
+                           title="测试">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基于矩阵分解的推荐系统算法"><span class="toc-text">基于矩阵分解的推荐系统算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#矩阵分解"><span class="toc-text">矩阵分解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python实现"><span class="toc-text">Python实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#输出结果"><span class="toc-text">输出结果</span></a></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://www.kofes.cn/">kofes</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/2913880653">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Zhan-bin">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Zhanbin 2018
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="touxiang.jpg">
+</body>
+
+</html>
