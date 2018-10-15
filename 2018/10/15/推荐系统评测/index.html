@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="Zhanbin" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        推荐系统评测｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2018/10/15/推荐系统评测/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Zhanbin
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/分类阅读/">分类阅读</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="/2018/10/15/java实现hdfs文件操作/header.png">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/2018/10/15/java实现hdfs文件操作/header.png');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>推荐系统评测</h1>
+                    
+                    <span class="meta">
+                         作者 zhan-bin
+                        <span>
+                          日期 2018-10-15
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#推荐系统"
+                           title="推荐系统">推荐系统</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            推荐系统评测
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="推荐系统评测指标"><a href="#推荐系统评测指标" class="headerlink" title="推荐系统评测指标"></a>推荐系统评测指标</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>&emsp;一个推荐系统的好坏需要一定的评测标准或者指标来衡量。常用的评价指标有：</p>
+<ol>
+<li>用户满意度</li>
+<li>预测准确度</li>
+<li>覆盖率</li>
+<li>多样性</li>
+<li>新颖性</li>
+<li>惊喜度</li>
+<li>实时性</li>
+<li>信任度</li>
+<li>健壮性</li>
+<li>商业目标</li>
+</ol>
+<h2 id="1-用户满意度"><a href="#1-用户满意度" class="headerlink" title="1.用户满意度"></a>1.用户满意度</h2><p>&emsp;用户作为推荐系统的重要参与者，其满意度是评测推荐系统的最重要指标。但是，用户满意度没有办法离线计算，只能通过用户调查或者在线实验获得。有对推荐结果满意或者不满意的反馈按钮，通过统计两种按钮的单击情况就可以度量系统的用户满意度。更一般的情况下，我们可以用点击率、用户停留时间和转化率等指标度量用户的满意度。<br><em>下图为用户对推荐结果反馈的界面</em><br><img src="/2018/10/15/推荐系统评测/1.png" alt="1"></p>
+<h2 id="2-预测准确度"><a href="#2-预测准确度" class="headerlink" title="2.预测准确度"></a>2.预测准确度</h2><p>&emsp;预测准确度度量一个推荐系统或者推荐算法预测用户行为的能力。这个指标是最重要的推荐系统离线评测指标，从推荐系统诞生的那一天起，几乎99%与推荐相关的论文都在讨论这个指标。这主要是因为该指标可以通过离线实验计算，方便了很多学术界的研究人员研究推荐算法。<br>&emsp;在计算该指标时需要有一个离线的数据集，该数据集包含用户的历史行为记录。后，将该数据集通过时间分成训练集和测试集。最后，通过在训练集上建立用户的行为和兴趣模型预测用户在测试集上的行为，并计算预测行为和测试集上实际行为的重合度作为预测准确度。<br>评分预测的预测准确度一般通过均方根误差（RMSE）和平均绝对误差（MAE）计算。对于测试集中的一个用户u和物品i，令r<sub>ui</sub>是用户u对物品i的实际评分，而r<sup>ˆ</sup><sub>ui</sub>是推荐算法给出的预测评分，那么RMSE的定义为：<br><img src="/2018/10/15/推荐系统评测/f1.png" alt="f1"><br>MAE采用绝对值计算预测误差，它的定义为：<br><img src="/2018/10/15/推荐系统评测/f2.png" alt="f2"></p>
+<h2 id="覆盖率"><a href="#覆盖率" class="headerlink" title="覆盖率"></a>覆盖率</h2><p>&emsp;覆盖率（coverage）是一个推荐系统对一些比较冷门的物品的发掘能力。覆盖率可以量化为推荐系统推荐的所有物品种类占总物品种类的比例。假设用户集合为U，推荐系统给每个用户推荐N个物品的列表R(u)。那么覆盖率可以通过下面的公式计算：<br><img src="/2018/10/15/推荐系统评测/f3.png" alt="f3"><br>&emsp;<strong>长尾理论：</strong><a href="https://baike.baidu.com/item/%E9%95%BF%E5%B0%BE%E7%90%86%E8%AE%BA/1002?fr=aladdin" target="_blank" rel="noopener">长尾理论</a>是经济学里面的一个概念，对于商品来说就是热门的少部分商品占据了大部分的销售份儿和关注度，还有很大的一部分不热门的商品则基本无人问津，而且由于马太效应会造成热门的商品会有越来越多人关注。<br><img src="/2018/10/15/推荐系统评测/2.jpg" alt="2"></p>
+<blockquote>
+<p>图片引用：<a href="https://baike.baidu.com/item/%E9%95%BF%E5%B0%BE%E7%90%86%E8%AE%BA/1002?fr=aladdin" target="_blank" rel="noopener">长尾理论</a><sub>–百度百科</sub></p>
+</blockquote>
+<p>&emsp;上面公式定义的覆盖率不能反映出物品推荐次数的分布情况，只是反映了有多少商品被推荐了。而在信息论和经济学中有两个著名的指标可以用来定义覆盖率。</p>
+<ul>
+<li><p>第一个是信息熵（里p(i)是物品i的流行度除以所有物品流行度之和）：<br><img src="/2018/10/15/推荐系统评测/f4.png" alt="f4"></p>
+</li>
+<li><p>第二个指标是基尼系数（Gini Index）：<br><img src="/2018/10/15/推荐系统评测/f5.png" alt="f5"></p>
+</li>
+</ul>
+<h2 id="4-多样性"><a href="#4-多样性" class="headerlink" title="4.多样性"></a>4.多样性</h2><p>&emsp;用户的兴趣是广泛的，在一个视频网站中，用户可能既喜欢看《猫和老鼠》一类的动画片，也喜欢看成龙的动作片。那么，为了满足用户广泛的兴趣，推荐列表需要能够覆盖用户不同的兴趣领域，即推荐结果需要具有多样性。<br>&emsp;多样性描述了推荐列表中物品两两之间的不相似性。因此，多样性和相似性是对应的。假设s(i, j)∈[0,1]定义了物品i和j之间的相似度，那么用户u的推荐列表R(u)的多样性定义如下：<br><img src="/2018/10/15/推荐系统评测/f6.png" alt="f6"></p>
+<p>而推荐系统的整体多样性可以定义为所有用户推荐列表多样性的平均值：<br><img src="/2018/10/15/推荐系统评测/f7.png" alt="f7"></p>
+<h2 id="5-新颖性"><a href="#5-新颖性" class="headerlink" title="5.新颖性"></a>5.新颖性</h2><p>&emsp;新颖的推荐是指给用户推荐那些他们以前没有听说过的物品。在一个网站中实现新颖性的最简单办法是，把那些用户之前在网站中对其有过行为的物品从推荐列表中过滤掉。比如在一个视频网站中，新颖的推荐不应该给用户推荐那些他们已经看过、打过分或者浏览过的视频。但是，有些视频可能是用户在别的网站看过，或者是在电视上看过，因此仅仅过滤掉本网站中用户有过行为的物品还不能完全实现新颖性。</p>
+<h2 id="6-惊喜度"><a href="#6-惊喜度" class="headerlink" title="6.惊喜度"></a>6.惊喜度</h2><p>&emsp;惊喜度（serendipity）是最近这几年推荐系统领域最热门的话题。但什么是惊喜度，惊喜度与新颖性有什么区别是首先需要弄清楚的问题。注意，这里讨论的是惊喜度和新颖度作为推荐指标在意义上的区别，而不是这两个词在中文里的含义区别（因为这两个词是英文词翻译过来的，所以它们在中文里的含义区别和英文词的含义区别并不相同），所以我们首先要摒弃大脑中关于这两个词在中文中的基本含义。目前并没有什么公认的惊喜度指标定义方式，这里只给出一种定性的度量方式。</p>
+<h2 id="7-信任度"><a href="#7-信任度" class="headerlink" title="7.信任度"></a>7.信任度</h2><p>&emsp;信任度是指用户对于这个推荐系统的信任度、或者是用户的好友的信任度。在推荐系统中，用户对于某个推荐系统的信任度高则用户更有可能接受这个推荐系统所推荐的东西。或者说基于用户信任度高的好友所推荐的东西也是更容易让用户接受。</p>
+<h2 id="8-实时性"><a href="#8-实时性" class="headerlink" title="8.实时性"></a>8.实时性</h2><p>&emsp;在很多网站中，因为物品（新闻、微博等）具有很强的时效性，所以需要在物品还具有时效性时就将它们推荐给用户。比如，给用户推荐昨天的新闻显然不如给用户推荐今天的新闻。因此，在这些网站中，推荐系统的实时性就显得至关重要。<br>&emsp;推荐系统的实时性包括两个方面。首先，推荐系统需要实时地更新推荐列表来满足用户新的行为变化。比如，当一个用户购买了iPhone，如果推荐系统能够立即给他推荐相关配件，那么肯定比第二天再给用户推荐相关配件更有价值。很多推荐系统都会在离线状态每天计算一次用户推荐列表，然后于在线期间将推荐列表展示给用户。这种设计显然是无法满足实时性的。与用户行为相应的实时性，可以通过推荐列表的变化速率来评测。如果推荐列表在用户有行为后变化不大，或者没有变化，说明推荐系统的实时性不高。</p>
+<h2 id="9-健壮性"><a href="#9-健壮性" class="headerlink" title="9.健壮性"></a>9.健壮性</h2><p>&emsp;推荐系统的健壮性是指这个推荐系统防止攻击和恶意刷热度的行为，这些都会严重影响推荐系统的各种性能指标。</p>
+<h2 id="10-商业目标"><a href="#10-商业目标" class="headerlink" title="10.商业目标"></a>10.商业目标</h2><p>&emsp;很多时候，网站评测推荐系统更加注重网站的商业目标是否达成，而商业目标和网站的盈利模式是息息相关的。一般来说，最本质的商业目标就是平均一个用户给公司带来的盈利。不过这种指标不是很难计算，只是计算一次需要比较大的代价。因此，很多公司会根据自己的盈利模式设计不同的商业目标。</p>
+<hr>
+<blockquote>
+<p>相关引用： <a href="https://mr.baidu.com/fv1ua81?f=cp" target="_blank" rel="noopener">项亮.推荐系统实践[M].北京:人民邮电出版社,2012</a></p>
+</blockquote>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/10/14/前缀树与后缀树/" data-toggle="tooltip" data-placement="top"
+                           title="前缀树与后缀树">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#推荐系统评测指标"><span class="toc-text">推荐系统评测指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-用户满意度"><span class="toc-text">1.用户满意度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-预测准确度"><span class="toc-text">2.预测准确度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#覆盖率"><span class="toc-text">覆盖率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-多样性"><span class="toc-text">4.多样性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-新颖性"><span class="toc-text">5.新颖性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-惊喜度"><span class="toc-text">6.惊喜度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-信任度"><span class="toc-text">7.信任度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-实时性"><span class="toc-text">8.实时性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-健壮性"><span class="toc-text">9.健壮性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-商业目标"><span class="toc-text">10.商业目标</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://www.kofes.cn/">kofes</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/2913880653">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Zhan-bin">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Zhanbin 2018
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="touxiang.jpg">
+</body>
+
+</html>
