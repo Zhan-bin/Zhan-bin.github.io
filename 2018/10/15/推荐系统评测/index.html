@@ -127,13 +127,13 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="/2018/10/15/java实现hdfs文件操作/header.png">
+<img class="wechat-title-img" src="/2018/10/15/推荐系统评测/header.png">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('/2018/10/15/java实现hdfs文件操作/header.png');
+        background-image: url('/2018/10/15/推荐系统评测/header.png');
     }
 
     
@@ -190,7 +190,7 @@
 </ol>
 <h2 id="1-用户满意度"><a href="#1-用户满意度" class="headerlink" title="1.用户满意度"></a>1.用户满意度</h2><p>&emsp;用户作为推荐系统的重要参与者，其满意度是评测推荐系统的最重要指标。但是，用户满意度没有办法离线计算，只能通过用户调查或者在线实验获得。有对推荐结果满意或者不满意的反馈按钮，通过统计两种按钮的单击情况就可以度量系统的用户满意度。更一般的情况下，我们可以用点击率、用户停留时间和转化率等指标度量用户的满意度。<br><em>下图为用户对推荐结果反馈的界面</em><br><img src="/2018/10/15/推荐系统评测/1.png" alt="1"></p>
 <h2 id="2-预测准确度"><a href="#2-预测准确度" class="headerlink" title="2.预测准确度"></a>2.预测准确度</h2><p>&emsp;预测准确度度量一个推荐系统或者推荐算法预测用户行为的能力。这个指标是最重要的推荐系统离线评测指标，从推荐系统诞生的那一天起，几乎99%与推荐相关的论文都在讨论这个指标。这主要是因为该指标可以通过离线实验计算，方便了很多学术界的研究人员研究推荐算法。<br>&emsp;在计算该指标时需要有一个离线的数据集，该数据集包含用户的历史行为记录。后，将该数据集通过时间分成训练集和测试集。最后，通过在训练集上建立用户的行为和兴趣模型预测用户在测试集上的行为，并计算预测行为和测试集上实际行为的重合度作为预测准确度。<br>评分预测的预测准确度一般通过均方根误差（RMSE）和平均绝对误差（MAE）计算。对于测试集中的一个用户u和物品i，令r<sub>ui</sub>是用户u对物品i的实际评分，而r<sup>ˆ</sup><sub>ui</sub>是推荐算法给出的预测评分，那么RMSE的定义为：<br><img src="/2018/10/15/推荐系统评测/f1.png" alt="f1"><br>MAE采用绝对值计算预测误差，它的定义为：<br><img src="/2018/10/15/推荐系统评测/f2.png" alt="f2"></p>
-<h2 id="覆盖率"><a href="#覆盖率" class="headerlink" title="覆盖率"></a>覆盖率</h2><p>&emsp;覆盖率（coverage）是一个推荐系统对一些比较冷门的物品的发掘能力。覆盖率可以量化为推荐系统推荐的所有物品种类占总物品种类的比例。假设用户集合为U，推荐系统给每个用户推荐N个物品的列表R(u)。那么覆盖率可以通过下面的公式计算：<br><img src="/2018/10/15/推荐系统评测/f3.png" alt="f3"><br>&emsp;<strong>长尾理论：</strong><a href="https://baike.baidu.com/item/%E9%95%BF%E5%B0%BE%E7%90%86%E8%AE%BA/1002?fr=aladdin" target="_blank" rel="noopener">长尾理论</a>是经济学里面的一个概念，对于商品来说就是热门的少部分商品占据了大部分的销售份儿和关注度，还有很大的一部分不热门的商品则基本无人问津，而且由于马太效应会造成热门的商品会有越来越多人关注。<br><img src="/2018/10/15/推荐系统评测/2.jpg" alt="2"></p>
+<h2 id="3-覆盖率"><a href="#3-覆盖率" class="headerlink" title="3.覆盖率"></a>3.覆盖率</h2><p>&emsp;覆盖率（coverage）是一个推荐系统对一些比较冷门的物品的发掘能力。覆盖率可以量化为推荐系统推荐的所有物品种类占总物品种类的比例。假设用户集合为U，推荐系统给每个用户推荐N个物品的列表R(u)。那么覆盖率可以通过下面的公式计算：<br><img src="/2018/10/15/推荐系统评测/f3.png" alt="f3"><br>&emsp;<strong>长尾理论：</strong><a href="https://baike.baidu.com/item/%E9%95%BF%E5%B0%BE%E7%90%86%E8%AE%BA/1002?fr=aladdin" target="_blank" rel="noopener">长尾理论</a>是经济学里面的一个概念，对于商品来说就是热门的少部分商品占据了大部分的销售份儿和关注度，还有很大的一部分不热门的商品则基本无人问津，而且由于马太效应会造成热门的商品会有越来越多人关注。<br><img src="/2018/10/15/推荐系统评测/2.jpg" alt="2"></p>
 <blockquote>
 <p>图片引用：<a href="https://baike.baidu.com/item/%E9%95%BF%E5%B0%BE%E7%90%86%E8%AE%BA/1002?fr=aladdin" target="_blank" rel="noopener">长尾理论</a><sub>–百度百科</sub></p>
 </blockquote>
@@ -238,7 +238,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#推荐系统评测指标"><span class="toc-text">推荐系统评测指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-用户满意度"><span class="toc-text">1.用户满意度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-预测准确度"><span class="toc-text">2.预测准确度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#覆盖率"><span class="toc-text">覆盖率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-多样性"><span class="toc-text">4.多样性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-新颖性"><span class="toc-text">5.新颖性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-惊喜度"><span class="toc-text">6.惊喜度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-信任度"><span class="toc-text">7.信任度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-实时性"><span class="toc-text">8.实时性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-健壮性"><span class="toc-text">9.健壮性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-商业目标"><span class="toc-text">10.商业目标</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#推荐系统评测指标"><span class="toc-text">推荐系统评测指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-用户满意度"><span class="toc-text">1.用户满意度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-预测准确度"><span class="toc-text">2.预测准确度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-覆盖率"><span class="toc-text">3.覆盖率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-多样性"><span class="toc-text">4.多样性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-新颖性"><span class="toc-text">5.新颖性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-惊喜度"><span class="toc-text">6.惊喜度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-信任度"><span class="toc-text">7.信任度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-实时性"><span class="toc-text">8.实时性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-健壮性"><span class="toc-text">9.健壮性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-商业目标"><span class="toc-text">10.商业目标</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
