@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        xshell上传文件到虚拟机｜undefined
+        xshell与远程主机传输文件｜undefined
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2018/06/28/xshell上传文件到虚拟机/">
+    <link rel="canonical" href="http://yoursite.com/2018/06/28/xshell与远程主机传输文件/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -144,7 +144,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>xshell上传文件到虚拟机</h1>
+                    <h1>xshell与远程主机传输文件</h1>
                     
                     <span class="meta">
                          作者 zhan-bin
@@ -164,7 +164,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            xshell上传文件到虚拟机
+            xshell与远程主机传输文件
         </span>
     </div>
 </header>
@@ -177,9 +177,9 @@
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
                 <h1 id="xshell远程连接及传输文件"><a href="#xshell远程连接及传输文件" class="headerlink" title="xshell远程连接及传输文件"></a>xshell远程连接及传输文件</h1><p>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a><br>日期：2018-6-28</p>
 <h2 id="1-配置Xshell"><a href="#1-配置Xshell" class="headerlink" title="1.配置Xshell"></a>1.配置Xshell</h2><ul>
-<li><p>（1）这里我使用的是 xshell 6 的版本，首先打开软件点击左上角的新建图标（如下图），也可以 “文件-新建” ，打开之后填写连接信息。名称自己定义，自己可以区分主机即可，主机那一项填写需要远程控制的机器的IP地址，比如我这里是连接自己的虚拟机，虚拟机ip地址为192.168.43.129，然后就点击连接。填写好用户名和密码就可以连接上了。（前提是你的电脑和需要远程控制的主机可以ping通）。<br><img src="/2018/06/28/xshell上传文件到虚拟机/1.png" alt="1"><br><img src="/2018/06/28/xshell上传文件到虚拟机/2.png" alt="2"></p>
+<li><p>（1）这里我使用的是 xshell 6 的版本，首先打开软件点击左上角的新建图标（如下图），也可以 “文件-新建” ，打开之后填写连接信息。名称自己定义，自己可以区分主机即可，主机那一项填写需要远程控制的机器的IP地址，比如我这里是连接自己的虚拟机，虚拟机ip地址为192.168.43.129，然后就点击连接。填写好用户名和密码就可以连接上了。（前提是你的电脑和需要远程控制的主机可以ping通）。<br><img src="/2018/06/28/xshell与远程主机传输文件/1.png" alt="1"><br><img src="/2018/06/28/xshell与远程主机传输文件/2.png" alt="2"></p>
 </li>
-<li><p>（2）打开“文件 - 属性”然后页面上弹出该链接的属性修改页面，并选中文件传输，把指定保存接受文件的文件夹进行修改，其中下载路径和加载路径是选择Windows上的存放目录，这两个可以相同，也可以不同，修改后如下图所示，此时，xshell就配置好了。<br><img src="/2018/06/28/xshell上传文件到虚拟机/3.png" alt="3"></p>
+<li><p>（2）打开“文件 - 属性”然后页面上弹出该链接的属性修改页面，并选中文件传输，把指定保存接受文件的文件夹进行修改，其中下载路径和加载路径是选择Windows上的存放目录，这两个可以相同，也可以不同，修改后如下图所示，此时，xshell就配置好了。<br><img src="/2018/06/28/xshell与远程主机传输文件/3.png" alt="3"></p>
 </li>
 </ul>
 <h2 id="2-在linux主机上安装上传下载命令"><a href="#2-在linux主机上安装上传下载命令" class="headerlink" title="2.在linux主机上安装上传下载命令"></a>2.在linux主机上安装上传下载命令</h2><ul>
@@ -191,11 +191,13 @@
 </li>
 <li><p>（2）进入该目录，用cd命令，如cd /usr/local/winupload</p>
 </li>
-<li><p>（3）输入命令rz，页面弹出选择文件的弹窗，如下图<br><img src="/2018/06/28/xshell上传文件到虚拟机/5.png" alt="5"></p>
+<li><p>（3）输入命令rz，页面弹出选择文件的弹窗，如下图<br><img src="/2018/06/28/xshell与远程主机传输文件/5.png" alt="5"></p>
 </li>
-<li><p>(4)选中某个文件，并打开，该文件就把上传到linux服务器了，可以在当前目录用命令ll查看，或者ls -l /usr/local/winupload，就能看到刚才上传成功的文件了。<br><img src="/2018/06/28/xshell上传文件到虚拟机/4.png" alt="4"></p>
+<li><p>(4)选中某个文件，并打开，该文件就把上传到linux服务器了，可以在当前目录用命令ll查看，或者ls -l /usr/local/winupload，就能看到刚才上传成功的文件了。<br><img src="/2018/06/28/xshell与远程主机传输文件/4.png" alt="4"></p>
 </li>
 </ul>
+<h2 id="4-下载linux（远程主机）上的文件"><a href="#4-下载linux（远程主机）上的文件" class="headerlink" title="4.下载linux（远程主机）上的文件"></a>4.下载linux（远程主机）上的文件</h2><p>命令：<strong>sz <em>文件路径</em></strong><br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sz /home/hadoop/etc/hadoop/core-site.xml</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/06/28/xshell与远程主机传输文件/6.png" alt=""><br>或者直接进入到文件目录输入sz加文件名。</p>
 
                 <hr>
                 
@@ -226,7 +228,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#xshell远程连接及传输文件"><span class="toc-text">xshell远程连接及传输文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-配置Xshell"><span class="toc-text">1.配置Xshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-在linux主机上安装上传下载命令"><span class="toc-text">2.在linux主机上安装上传下载命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-把电脑的文件上传到远程主机上"><span class="toc-text">3.把电脑的文件上传到远程主机上</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#xshell远程连接及传输文件"><span class="toc-text">xshell远程连接及传输文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-配置Xshell"><span class="toc-text">1.配置Xshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-在linux主机上安装上传下载命令"><span class="toc-text">2.在linux主机上安装上传下载命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-把电脑的文件上传到远程主机上"><span class="toc-text">3.把电脑的文件上传到远程主机上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-下载linux（远程主机）上的文件"><span class="toc-text">4.下载linux（远程主机）上的文件</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
