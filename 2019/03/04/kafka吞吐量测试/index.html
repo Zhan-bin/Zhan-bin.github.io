@@ -190,11 +190,11 @@
 <p><img src="/2019/03/04/kafka吞吐量测试/1.png" alt=""><br>这里选择topic first 来进行测试，测试目标是slaver2，slaver3</p>
 <h3 id="测试生产者"><a href="#测试生产者" class="headerlink" title="测试生产者"></a>测试生产者</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-producer-perf-test.sh --topic test --num-records <span class="number">500000</span> --record-size <span class="number">200</span> --througthput -<span class="number">1</span> --producer-props bootstrap.servers=slave1=<span class="number">9092</span>,slave3=<span class="number">9092</span> acks=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>测试结果<br><img src="/2019/03/04/kafka吞吐量测试/2.png" alt=""><br>| 测试结果字段 | 说明 |<br>|——–|——–|<br>| ave latency | 平均延迟 |<br>| max latebcy | 最大延迟 |<br>| 3136 ms 50th | 发送50%的消息需要 3136ms |</li>
+<li>测试结果<br><img src="/2019/03/04/kafka吞吐量测试/2.png" alt=""><br>测试结果字段 | 说明<br>-|-<br>ave latency | 平均延迟<br>max latebcy | 最大延迟<br>3136 ms 50th | 发送50%的消息需要 3136ms</li>
 </ul>
 <h3 id="测试消费者"><a href="#测试消费者" class="headerlink" title="测试消费者"></a>测试消费者</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-consumer-perfs-test.sh --broker-list bd-master:<span class="number">9092</span>,bd-slave1=<span class="number">9092</span>,bd-slave3=<span class="number">9092</span> --message-size <span class="number">200</span> --messages <span class="number">500000</span> --topic test</span><br></pre></td></tr></table></figure>
 <ul>
-<li>测试结果<br><img src="/2019/03/04/kafka吞吐量测试/3.png" alt=""><br>| start.time | end.time | data.consumed.in.MB|MB.sec | data.consumed.in.nMsg | nMsg.sec |<br>|——–|——–|<br>| 2019-03-03 21:39:29:845 |2019-03-03 21:39:31:258 | 95.3976 | 67.5142 | 500164 | 353973.1069 |</li>
+<li>测试结果<br><img src="/2019/03/04/kafka吞吐量测试/3.png" alt=""><br>start.time | end.time | data.consumed.in.MB|MB.sec | data.consumed.in.nMsg | nMsg.sec<br>-|-<br>2019-03-03 21:39:29:845 |2019-03-03 21:39:31:258 | 95.3976 | 67.5142 | 500164 | 353973.1069</li>
 </ul>
 
                 <hr>
