@@ -190,15 +190,14 @@
 <p><img src="/2019/03/04/kafka吞吐量测试/1.png" alt=""><br>这里选择topic first 来进行测试，测试目标是slaver2，slaver3</p>
 <h3 id="测试生产者"><a href="#测试生产者" class="headerlink" title="测试生产者"></a>测试生产者</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-producer-perf-test.sh --topic test --num-records <span class="number">500000</span> --record-size <span class="number">200</span> --througthput -<span class="number">1</span> --producer-props bootstrap.servers=slave1=<span class="number">9092</span>,slave3=<span class="number">9092</span> acks=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>测试结果<br><img src="/2019/03/04/kafka吞吐量测试/2.png" alt=""></li>
+<li>测试结果<br><img src="/2019/03/04/kafka吞吐量测试/2.png" alt=""><br><font size="2"><br>测试结果字段 | 说明<br>:-: | :-:<br>ave latency | 平均延迟<br>max latebcy | 最大延迟<br>3136 ms 50th | 发送50%的消息需要 3136ms</font></li>
 </ul>
-<p>测试结果字段 | 说明</p>
-<ul>
-<li>| -：<br>ave latency | 平均延迟<br>max latebcy | 最大延迟<br>3136 ms 50th | 发送50%的消息需要 3136ms</li>
-</ul>
+<p></p>
 <h3 id="测试消费者"><a href="#测试消费者" class="headerlink" title="测试消费者"></a>测试消费者</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-consumer-perfs-test.sh --broker-list bd-master:<span class="number">9092</span>,bd-slave1=<span class="number">9092</span>,bd-slave3=<span class="number">9092</span> --message-size <span class="number">200</span> --messages <span class="number">500000</span> --topic test</span><br></pre></td></tr></table></figure>
 <ul>
-<li>测试结果<br><img src="/2019/03/04/kafka吞吐量测试/3.png" alt=""></li>
+<li>测试结果<br><img src="/2019/03/04/kafka吞吐量测试/3.png" alt=""><font size="1">
+
+</font></li>
 </ul>
 <table>
 <thead>
@@ -222,30 +221,22 @@
 </tr>
 </tbody>
 </table>
+<p></p>
 <table>
 <thead>
 <tr>
-<th>name</th>
-<th style="text-align:center">111</th>
-<th style="text-align:center">222</th>
-<th style="text-align:center">333</th>
-<th style="text-align:right">444</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">11</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>aaa</td>
+<td style="text-align:center">aaa</td>
 <td style="text-align:center">bbb</td>
-<td style="text-align:center">ccc</td>
-<td style="text-align:center">ddd</td>
-<td style="text-align:right">eee</td>
 </tr>
 <tr>
-<td>fff</td>
+<td style="text-align:center">fff</td>
 <td style="text-align:center">ggg</td>
-<td style="text-align:center">hhh</td>
-<td style="text-align:center">iii</td>
-<td style="text-align:right">000</td>
 </tr>
 </tbody>
 </table>
