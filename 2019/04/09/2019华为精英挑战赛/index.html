@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        kafka吞吐量测试｜undefined
+        2019华为精英挑战赛｜undefined
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2019/03/04/kafka吞吐量测试/">
+    <link rel="canonical" href="http://yoursite.com/2019/04/09/2019华为精英挑战赛/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -127,13 +127,13 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="/2019/03/04/kafka吞吐量测试/header.png">
+<img class="wechat-title-img" src="/2019/04/09/2019华为精英挑战赛/header.png">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('/2019/03/04/kafka吞吐量测试/header.png');
+        background-image: url('/2019/04/09/2019华为精英挑战赛/header.png');
     }
 
     
@@ -144,18 +144,15 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>kafka吞吐量测试</h1>
+                    <h1>2019华为精英挑战赛</h1>
                     
                     <span class="meta">
                          作者 zhan-bin
                         <span>
-                          日期 2019-03-04
+                          日期 2019-04-09
                          </span>
                     </span>
                     <div class="tags text-center">
-                        
-                        <a class="tag" href="/tags/#hadoop"
-                           title="hadoop">hadoop</a>
                         
                     </div>
                 </div>
@@ -164,7 +161,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            kafka吞吐量测试
+            2019华为精英挑战赛
         </span>
     </div>
 </header>
@@ -175,86 +172,63 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h1 id="kafka吞吐量测试"><a href="#kafka吞吐量测试" class="headerlink" title="kafka吞吐量测试"></a>kafka吞吐量测试</h1><p>作者：<a href="https://zhan-bin.cn/" target="_blank" rel="noopener">Zhan-bin</a><br>日期：2019-03-04</p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><strong>kafka-producer-perf-test</strong> :是kafka提供的测试Producer性能脚本，通过脚本，可以计算出Producer在一段时间内的平均延时和吞吐量。本文就是通过这个方法来对kafka的吞吐量进行测试。</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ul>
-<li><p>打开zookeeper集群<br><strong>略</strong></p>
-</li>
-<li><p>打开kafka集群</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-server-<span class="built_in">start</span>.sh config/server.properties &amp;</span><br><span class="line">bin/kafka-server-<span class="built_in">start</span>.sh config/server.properties &amp;</span><br><span class="line">bin/kafka-server-<span class="built_in">start</span>.sh config/server.properties &amp;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看kafka集群中的所有topic</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --zookeeper master:<span class="number">2181</span> --list</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/2019/03/04/kafka吞吐量测试/1.png" alt=""><br>这里选择topic first 来进行测试，测试目标是slaver2，slaver3</p>
-<h3 id="测试生产者"><a href="#测试生产者" class="headerlink" title="测试生产者"></a>测试生产者</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-producer-perf-test.sh --topic test --num-records <span class="number">500000</span> --record-size <span class="number">200</span> --througthput -<span class="number">1</span> --producer-props bootstrap.servers=slave1=<span class="number">9092</span>,slave3=<span class="number">9092</span> acks=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+                <h1 id="2019华为精英挑战赛总结"><a href="#2019华为精英挑战赛总结" class="headerlink" title="2019华为精英挑战赛总结"></a>2019华为精英挑战赛总结</h1><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h4 id="车辆"><a href="#车辆" class="headerlink" title="车辆"></a>车辆</h4><p>&emsp;这里将车辆封装成一个类，将车辆的状态，基本信息都存储于车辆的实例对象当中。</p>
+<p><strong>属性：</strong></p>
 <ul>
-<li>测试结果<br><img src="/2019/03/04/kafka吞吐量测试/2.png" alt=""></li>
+<li>实际出发时间</li>
+<li>路径</li>
+<li>最高车速</li>
+<li>起点</li>
+<li>目的地</li>
+<li>下一次转向</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">测试结果字段</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">ave latency</td>
-<td style="text-align:center">平均延迟</td>
-</tr>
-<tr>
-<td style="text-align:center">max latebcy</td>
-<td style="text-align:center">最大延迟</td>
-</tr>
-<tr>
-<td style="text-align:center">3136 ms 50th</td>
-<td style="text-align:center">发送50%的消息需要 3136ms</td>
-</tr>
-</tbody>
-</table>
-<h3 id="测试消费者"><a href="#测试消费者" class="headerlink" title="测试消费者"></a>测试消费者</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-consumer-perfs-test.sh --broker-list bd-master:<span class="number">9092</span>,bd-slave1=<span class="number">9092</span>,bd-slave3=<span class="number">9092</span> --message-size <span class="number">200</span> --messages <span class="number">500000</span> --topic test</span><br></pre></td></tr></table></figure>
+<p><strong>方法：</strong></p>
 <ul>
-<li>测试结果<br><img src="/2019/03/04/kafka吞吐量测试/3.png" alt=""></li>
+<li>更新位置</li>
+<li>初始化</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>start.time</th>
-<th style="text-align:center">end.time</th>
-<th style="text-align:center">data.consumed.in.MB</th>
-<th style="text-align:center">MB.sec</th>
-<th style="text-align:center">data.consumed.in.nMsg</th>
-<th style="text-align:right">nMsg.sec</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2019-03-03 21:39:29:845</td>
-<td style="text-align:center">2019-03-03 21:39:31:258</td>
-<td style="text-align:center">95.3976</td>
-<td style="text-align:center">67.5142</td>
-<td style="text-align:center">500164</td>
-<td style="text-align:right">353973.1069</td>
-</tr>
-</tbody>
-</table>
+<hr>
+<h4 id="道路"><a href="#道路" class="headerlink" title="道路"></a>道路</h4><p>&emsp;道路也是封装成一个类将状态和基础信息存储与实例对象当中</p>
+<p><strong>属性：</strong></p>
+<ul>
+<li>道路长度</li>
+<li>道路限速</li>
+<li>车道状态数组(双向道路的话就存储于两个不同的对象当中。<br><img src="/2019/04/09/2019华为精英挑战赛/stat.png" alt="stat"></li>
+</ul>
+<p><strong>方法</strong></p>
+<ul>
+<li>更改道路状态</li>
+<li>读取道路状态</li>
+</ul>
+<hr>
+<h4 id="道路及路口的存储"><a href="#道路及路口的存储" class="headerlink" title="道路及路口的存储"></a>道路及路口的存储</h4><ul>
+<li><p>这里将道路存储于一个二维数组当中，使用数组下标和道路连接的路口来定位某一条道路。例如：road[i][j]存储的是连接路口 i -&gt; j 的道路。<br><img src="/2019/04/09/2019华为精英挑战赛/road.png" alt="road"></p>
+</li>
+<li><p>路口信息也是存储于一个数组当中，连接路口的道路按顺时针排放。如下图：<br><img src="/2019/04/09/2019华为精英挑战赛/cross.png" alt="cross"></p>
+</li>
+<li><p>使用hashmap存储以路口标志的道路和道路id。<br><img src="/2019/04/09/2019华为精英挑战赛/map.png" alt="map"></p>
+</li>
+</ul>
+<h2 id="路径规划——迪杰斯特拉"><a href="#路径规划——迪杰斯特拉" class="headerlink" title="路径规划——迪杰斯特拉"></a>路径规划——迪杰斯特拉</h2><p>&emsp;我们使用的路径规划是迪杰斯特拉算法来计算最优路径，第一步先将所有路口之间的最毒只能路径先计算出来存储于一个二维数组path当中，path的下标也是表示路口id。例如：path[i][j] 存储的是路口i到路口j的最短路径。<br><img src="/2019/04/09/2019华为精英挑战赛/path.png" alt="path"></p>
+<h2 id="调度规则"><a href="#调度规则" class="headerlink" title="调度规则"></a>调度规则</h2><p>略，详见任务书</p>
+<h2 id="道路更新"><a href="#道路更新" class="headerlink" title="道路更新"></a>道路更新</h2><p><img src="/2019/04/09/2019华为精英挑战赛/al.png" alt="al"></p>
+<h2 id="车辆实际路径规划"><a href="#车辆实际路径规划" class="headerlink" title="车辆实际路径规划"></a>车辆实际路径规划</h2><p>&emsp;这里使用了一个list数组存储当前时刻可以上路的车辆（即已经到达出发时间的车辆），每个时刻都检查有没有车可以出发，将车辆放入待出发车辆数组当中。每个时刻道路上的车更新为终态之后都会检查待出发车辆数组查看是否有车可以出发，如当前道路已满则继续等待。车辆出发时从路径数组获取起点和终点的最短路径作为当前行驶路径。</p>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><p>&emsp;根据任务书的描述，道路上的车辆比较多的时候有可能会因为交通规则而导致死锁状态的发生，也有可能发生堵死状态。</p>
+<ul>
+<li>死锁的判断<br>  我们判断死锁是根据某个时刻所有道路都没有一辆车可以行使来判断道路已经是死锁状态。</li>
+<li>解决死锁<br>  死锁需要通过调度车辆来解决，改变一些车辆路径，往不拥堵或者其他道路行驶。这里就是用到了上面的路径矩阵了。</li>
+<li>改变路径方法<br>  如果当前车辆需要进入的道路发生拥堵或者死锁，假如当前需要进入的是直行车道堵住了，则检查左转车道和右转车道是否可行而将车辆调度至其他车道，随后再根据车辆当前位置重新规划路径（也就是从路径数组获取当前地点到终点的最短路径）。如果其他车道都不可行，那么就换一辆车从新尝试，遍历整个地图。</li>
+</ul>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2019/04/09/2019华为精英挑战赛/" data-toggle="tooltip" data-placement="top"
-                           title="2019华为精英挑战赛">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2018/12/07/覆盖树/" data-toggle="tooltip" data-placement="top"
-                           title="覆盖树">Next Post &rarr;</a>
+                        <a href="/2019/03/04/kafka吞吐量测试/" data-toggle="tooltip" data-placement="top"
+                           title="kafka吞吐量测试">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -270,7 +244,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#kafka吞吐量测试"><span class="toc-text">kafka吞吐量测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-text">测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备"><span class="toc-text">准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试生产者"><span class="toc-text">测试生产者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试消费者"><span class="toc-text">测试消费者</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019华为精英挑战赛总结"><span class="toc-text">2019华为精英挑战赛总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据结构"><span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#车辆"><span class="toc-text">车辆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#道路"><span class="toc-text">道路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#道路及路口的存储"><span class="toc-text">道路及路口的存储</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路径规划——迪杰斯特拉"><span class="toc-text">路径规划——迪杰斯特拉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调度规则"><span class="toc-text">调度规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#道路更新"><span class="toc-text">道路更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#车辆实际路径规划"><span class="toc-text">车辆实际路径规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#死锁"><span class="toc-text">死锁</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
